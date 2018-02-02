@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rg_root" />
+
+
+    <RadioGroup
+        android:id="@+id/rg_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_tab_strip_icon_category_selector"
+            android:gravity="center"
+            android:text="首页"
+            android:textColor="@color/gray"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/rb_follow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_tab_strip_icon_follow_selector"
+            android:gravity="center"
+            android:text="关注"
+            android:textColor="@color/gray"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/rb_notification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_tab_strip_icon_feed_selector"
+            android:gravity="center"
+            android:text="通知"
+            android:textColor="@color/gray"
+            android:textSize="10sp" />
+
+        <RadioButton
+            android:id="@+id/rb_mine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/ic_tab_strip_icon_profile_selector"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@color/gray"
+            android:textSize="10sp" />
+    </RadioGroup>
+
+</RelativeLayout>

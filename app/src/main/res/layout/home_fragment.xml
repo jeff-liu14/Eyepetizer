@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_home"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/drag_icon" />
+
+            <TextView
+                android:id="@+id/tv_bar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textSize="16sp" />
+
+            <com.flyco.tablayout.SlidingTabLayout xmlns:tl="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@+id/iv_search"
+                android:layout_toRightOf="@+id/iv_home"
+                android:background="@color/white"
+                tl:tl_divider_padding="2dp"
+                tl:tl_indicator_color="@color/black"
+                tl:tl_indicator_height="3dp"
+                tl:tl_indicator_width="8dp"
+                tl:tl_tab_padding="8dp"
+                tl:tl_textBold="BOTH"
+                tl:tl_textSelectColor="@color/black"
+                tl:tl_textUnselectColor="@color/gray"
+                tl:tl_textsize="14sp" />
+
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/guide_search" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/eee" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar" />
+</RelativeLayout>
