@@ -30,7 +30,7 @@ class AdActivity : BaseActivity() {
 //        val alphaAnimation = AlphaAnimation(0.1f, 1.0f)
 //        alphaAnimation.duration = 1000
         val scaleAnimation = ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f, ScaleAnimation.RELATIVE_TO_SELF, 0.5f, ScaleAnimation.RELATIVE_TO_SELF, 0.5f)
-        scaleAnimation.duration = 3000
+        scaleAnimation.duration = 2000
         val animationSet = AnimationSet(true)
 //        animationSet.addAnimation(alphaAnimation)
         animationSet.addAnimation(scaleAnimation)

@@ -8,6 +8,7 @@
         android:id="@+id/bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom"
         android:background="@drawable/landing_background" />
 
     <ImageView
@@ -17,23 +18,32 @@
         android:layout_centerInParent="true"
         android:background="@drawable/ic_account_login_header" />
 
-    <TextView
-        android:id="@+id/tv_english_intro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tv_intro"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="16dp"
-        android:text="Daily appetizers for your eyes，Bon eyepetit"
-        android:textColor="@color/white" />
-
-    <TextView
-        android:id="@+id/tv_intro"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="46dp"
-        android:text="每日精选视频推介，让你大开眼界。"
-        android:textColor="@color/white" />
+        android:background="@color/black"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_english_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_intro"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Daily appetizers for your eyes，Bon eyepetit"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="46dp"
+            android:text="每日精选视频推介，让你大开眼界。"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
 </RelativeLayout>

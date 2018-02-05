@@ -30,7 +30,7 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun initData()
 
-    fun initEvent() {
+    internal open fun initEvent() {
 
     }
 
