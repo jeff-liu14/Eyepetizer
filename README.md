@@ -6,18 +6,14 @@
 [blog](http://liuzheng.space/#blog)
 
 # 首页
-<img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/shouye-faxian.png?raw=true"/>
-<img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/shouye-guanggao.png?raw=true"/>
-<img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/shouye-tuijian.png?raw=true"/>
+<img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/shouye-faxian.png?raw=true"/><img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/shouye-guanggao.png?raw=true"/><img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/shouye-tuijian.png?raw=true"/>
 
 # 关注
 <img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/guanzhu.png?raw=true"/>
 
 # 搜索
 
-<img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/sousuo-error.png?raw=true"/>
-<img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/sousuo-succ.png?raw=true"/>
-<img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/sousuo.png?raw=true"/>
+<img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/sousuo-error.png?raw=true"/><img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/sousuo-succ.png?raw=true"/><img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/sousuo.png?raw=true"/>
 
 # 通知
 
