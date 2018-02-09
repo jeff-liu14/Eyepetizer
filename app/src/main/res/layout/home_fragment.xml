@@ -6,7 +6,7 @@
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="50dp"
         android:background="@color/white"
         android:visibility="visible">
 
@@ -41,20 +41,20 @@
                 tl:tl_indicator_color="@color/black"
                 tl:tl_indicator_height="3dp"
                 tl:tl_indicator_width="8dp"
-                tl:tl_tab_padding="8dp"
+                tl:tl_tab_padding="14dp"
                 tl:tl_textBold="BOTH"
                 tl:tl_textSelectColor="@color/black"
                 tl:tl_textUnselectColor="@color/gray"
-                tl:tl_textsize="14sp" />
+                tl:tl_textsize="13sp" />
 
 
             <ImageView
                 android:id="@+id/iv_search"
-                android:layout_width="wrap_content"
+                android:layout_width="18dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/guide_search" />
+                android:src="@drawable/ic_action_search_no_padding" />
 
             <View
                 android:layout_width="match_parent"

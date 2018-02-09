@@ -1,8 +1,5 @@
 package com.moment.eyepetizer
 
-import android.content.Context
-import android.content.res.Resources
-import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,14 +11,7 @@ import com.moment.eyepetizer.home.HomeFragment
 import com.moment.eyepetizer.mine.MineFragment
 import com.moment.eyepetizer.notification.NotificationFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-import android.widget.LinearLayout
-import android.util.TypedValue
-import java.lang.reflect.AccessibleObject.setAccessible
-import android.support.design.widget.TabLayout
-import java.lang.reflect.Field
-import android.opengl.ETC1.getWidth
-import android.widget.TextView
+import com.moment.eyepetizer.utils.ImageLoad
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -37,14 +27,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .hide(mineFragment)
                         .hide(notificationFragment)
                         .commit()
-//                tv_bar_title.text = "subscription"
-//                tv_bar_title.visibility = View.VISIBLE
-//                toolbar.visibility = View.VISIBLE
-//                tab_layout.visibility = View.GONE
-//                iv_search.setImageResource(R.drawable.guide_search)
+                ImageLoad().clearCache(this@MainActivity.applicationContext)
             }
             R.id.rb_home -> {
-//                toolbar.visibility = View.GONE
                 rb_home.isChecked = true
                 rb_home.setTextColor(resources.getColor(R.color.black))
                 supportFragmentManager.beginTransaction().show(homeFragment)
@@ -52,11 +37,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .hide(mineFragment)
                         .hide(followFragment)
                         .commit()
-//                tv_bar_title.text = getToday()
-//                tv_bar_title.visibility = View.GONE
-//                toolbar.visibility = View.VISIBLE
-//                tab_layout.visibility = View.VISIBLE
-//                iv_search.setImageResource(R.drawable.guide_search)
+                ImageLoad().clearCache(this@MainActivity.applicationContext)
             }
             R.id.rb_notification -> {
                 rb_notification.isChecked = true
@@ -66,6 +47,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .hide(mineFragment)
                         .hide(homeFragment)
                         .commit()
+                ImageLoad().clearCache(this@MainActivity.applicationContext)
             }
             R.id.rb_mine -> {
                 rb_mine.isChecked = true
@@ -75,6 +57,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .hide(homeFragment)
                         .hide(notificationFragment)
                         .commit()
+                ImageLoad().clearCache(this@MainActivity.applicationContext)
             }
         }
     }
@@ -87,10 +70,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rb_follow.setTextColor(resources.getColor(R.color.gray))
     }
 
-    var homeFragment: Fragment? = null
-    var followFragment: Fragment? = null
-    var notificationFragment: Fragment? = null
-    var mineFragment: Fragment? = null
+    private var homeFragment: Fragment? = null
+    private var followFragment: Fragment? = null
+    private var notificationFragment: Fragment? = null
+    private var mineFragment: Fragment? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,9 +83,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         initFragment(savedInstanceState)
     }
 
-    fun initView() {
-        setRadioButton()
-    }
+    fun initView() = setRadioButton()
 
     private fun initFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
@@ -149,18 +130,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rb_notification.setOnClickListener(this)
         rb_follow.setOnClickListener(this)
         rb_mine.setOnClickListener(this)
-    }
-
-    private fun getToday(): String {
-        var list = arrayOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
-        var data: Date = Date()
-        var calendar: Calendar = Calendar.getInstance()
-        calendar.time = data
-        var index: Int = calendar.get(Calendar.DAY_OF_WEEK) - 1
-        if (index < 0) {
-            index = 0
-        }
-        return list[index]
     }
 
     private var firstTime: Long = 0

@@ -25,7 +25,25 @@ class UriUtils {
         var startId: Int = 0
     }
 
-    fun parseFeedUri(url: String): FeedParse {
+    class SearchParse {
+        var start: Int = 0
+        var num: Int = 0
+        var query: String? = null
+    }
+
+    open fun parseSearchUri(url: String): SearchParse {
+        var uri: Uri? = Uri.parse(url)
+        var start: Int = uri!!.getQueryParameter("start").toInt()
+        var num: Int = uri!!.getQueryParameter("num").toInt()
+        var query: String = uri!!.getQueryParameter("query")
+        var searchParse = SearchParse()
+        searchParse.start = start
+        searchParse.num = num
+        searchParse.query = query
+        return searchParse
+    }
+
+    open fun parseFeedUri(url: String): FeedParse {
         var uri: Uri? = Uri.parse(url)
         var date: Long = uri!!.getQueryParameter("date").toLong()
         var num: Int = uri!!.getQueryParameter("num").toInt()
@@ -35,7 +53,7 @@ class UriUtils {
         return feedParse
     }
 
-    fun parseCategoryUri(url: String): CategoryParse {
+    open fun parseCategoryUri(url: String): CategoryParse {
         var uri: Uri? = Uri.parse(url)
         var start: Int = uri!!.getQueryParameter("start").toInt()
         var num: Int = uri!!.getQueryParameter("num").toInt()
@@ -45,7 +63,7 @@ class UriUtils {
         return category
     }
 
-    fun parseFollowUri(url: String): FollowParse {
+    open fun parseFollowUri(url: String): FollowParse {
         var uri: Uri? = Uri.parse(url)
         var start: Int = uri!!.getQueryParameter("start").toInt()
         var num: Int = uri!!.getQueryParameter("num").toInt()

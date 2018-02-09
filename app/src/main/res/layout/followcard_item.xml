@@ -4,25 +4,20 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="15dp"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_cover_bg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/iv_cover"
+        <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iv_followcard_cover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/tv_time"
+            android:id="@+id/tv_followcard_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
@@ -42,11 +37,10 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/iv_icon"
+            android:id="@+id/iv_followcard_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="10dp"
-            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
@@ -56,7 +50,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_title"
+                android:id="@+id/tv_followcard_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="title"
@@ -65,7 +59,7 @@
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/tv_content"
+                android:id="@+id/tv_followcard_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sssss"

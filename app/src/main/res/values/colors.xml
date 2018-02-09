@@ -10,4 +10,216 @@
     <color name="transparent">#0000</color>
     <color name="textbg">#8F9AA8</color>
     <color name="eee">#eeeeee</color>
+
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow">#10000000</color>
+    <color name="lite_blue">#ff359ff2</color>
+    <color name="window_background">#00000000</color>
+    <color name="black_de">#DE000000</color>
+
+    <color name="color_card_bg_white">#f2f2f2</color>
+    <color name="color_bg_white">#fafafa</color>
+    <color name="color_divider">#e6e6e6</color>
+    <color name="color_text_light_cc">#cccccc</color>
+    <color name="color_text_middle_99">#999999</color>
+    <color name="color_text_dark_66">#666666</color>
+    <color name="color_text_big_dark_33">#333333</color>
+    <color name="color_cee9f1">#cee9f1</color>
+    <color name="color_cdefcd">#cdefcd</color>
+    <color name="color_eee0ca">#eee0ca</color>
+    <color name="color_cbbb9a">#cbbb9a</color>
+    <color name="color_373737">#373737</color>
+    <color name="color_686868">#686868</color>
+    <color name="color_98bdf9">#98bdf9</color>
+    <color name="color_tip_pink">#ffeff1</color>
+
+    <color name="colorControlHighlight">#40000000</color>
+    <color name="colorRed">#fd5567</color>
+    <color name="colorBlue">#99d363</color>
+    <color name="rankBlue">#09c7f2</color>
+    <color name="color_5b5b5b">#5b5b5b</color>
+    <color name="pink">#fff2f2</color>
+    <color name="red">#f90202</color>
+    <color name="tab_color">#ED4044</color>
+    <color name="white_half_apha">#87ffffff</color>
+    <color name="white_0.7_apha">#b4ffffff</color>
+    <color name="white_0.18_apha">#2effffff</color>
+    <color name="black_0.3_apha">#4c000000</color>
+    <color name="black_half_apha">#87000000</color>
+    <color name="read_status_bg">#2e000000</color>
+    <color name="black_0.7_apha">#b4000000</color>
+    <color name="black_0.9_apha">#ea000000</color>
+    <color name="collect_first">#fc656a</color>
+    <color name="collect_second">#ffbe48</color>
+    <color name="collect_third">#56d6ed</color>
+
+
+    <color name="ss">#70333333</color>
+    <color name="bg_blue">#46d0d6</color> <!-- 主题蓝 -->
+    <color name="font_fc0">#ffffcc00</color>
+    <color name="font_000">#000000</color>
+    <color name="font_999">#999999</color>
+    <color name="font_666">#666666</color>
+    <color name="font_333">#333333</color>
+    <color name="font_fff">#ffffff</color>
+    <color name="font_red">#ff0000</color>
+    <!-- 主要用的暖黑色 -->
+    <color name="font_main">#5a6060</color>
+
+    <color name="pay_charge_selected_corlor">#444444</color>
+    <color name="pay_charge_normal_corlor">#a0a0a0</color>
+
+    <!-- List Item 颜色 -->
+    <color name="main_mine_item_sel">#15000000</color>
+    <color name="list_driver">#e5e5e5</color>
+    <color name="list_item_sel">#f0f2f2</color>
+    <color name="list_item_nor">#ffffff</color>
+    <color name="item_text_color">#000000</color>
+    <color name="item_text_second_color">#959595</color>
+    <color name="item_text_shiting_color">#01c4cc</color>
+    <color name="item_text_old_price_color">#d2d2d2</color>
+    <color name="login_hint_text_color">#d6d6d6</color>
+    <color name="other_login_text_color">#a5a5a5</color>
+    <color name="item_text_loginhistory_date">#b3b3b3</color>
+    <color name="item_text_des_color">#a0a0a0</color>
+    <color name="item_text_import_des_color">#F86F00</color>
+    <color name="item_audio_free_play">#80DADE</color>
+    <color name="item_vip_text_color">#a2a2a2</color>
+    <color name="vip_bg_nor">#eeeeee</color>
+    <color name="item_home_page_divier">#eeeeee</color>
+    <color name="vip_page_text_color">#474747</color>
+    <color name="vip_normal_yellow">#ff9e05</color>
+
+    <!--  -->
+    <color name="detail_control_pay_btn">#ffffff</color>
+    <color name="detail_control_pay_btn_1">#b9b9b9</color>
+    <color name="bg_fragment_boutique_item_normal">#00000000</color>
+    <color name="bg_fragment_boutique_item_selected">#55555555</color>
+
+    <!-- 播放列表的颜色 -->
+    <color name="playlist_blue">#5af8ff</color>
+    <color name="playlist_white">#f9f8f8</color>
+
+    <!-- 年龄选中背景色 -->
+    <color name="age_selected_gray">#e9f0f3</color>
+
+    <!-- 意见反馈 -->
+    <color name="feedback_timeline">#acb5c4</color>
+
+    <!-- 价格，橘黄色 -->
+    <color name="font_price">#f57945</color>
+
+    <!-- 同龄在听，黄色 -->
+    <color name="font_same_age">#ffad1f</color>
+
+    <!-- 购买历史小字 -->
+    <color name="purchase_history_small">#c1c1c1</color>
+
+    <!--退出-->
+    <color name="mine_logout">#ff3b30</color>
+    <color name="mine_logout_pres">#C51717</color>
+
+    <!-- 年龄选择框 -->
+    <color name="select_age_press_font">#ffffff</color>
+    <color name="select_age_normal_font">#888888</color>
+    <color name="select_age_press_bg">#e3f3f4</color>
+    <color name="select_age_normal_bg">#fcfcfc</color>
+
+    <!-- 检测诊断中颜色 -->
+    <color name="checkreport_hard_black">#898989</color>
+    <color name="checkreport_light_black">#b5b5b5</color>
+    <color name="checkreport_error_red">#ff4656</color>
+    <color name="checkreport_progress_grey">#e3e9e7</color>
+    <color name="checkreport_progress_blue">#00cfd8</color>
+
+    <!-- WebView底部操作栏选中颜色 -->
+    <color name="web_bottom_btn_pressed">#E4E4E4</color>
+    <!-- 歌词配色 -->
+    <color name="lyric_unHight">#7FFFFFFF</color>
+
+    <!-- 故事库 -->
+    <color name="story_grey_line_divider">#d2d2d2</color>
+    <color name="story_grey_line_item">#e5e5e5</color>
+    <color name="mine_grey_bg_item">#e5e5e5</color>
+    <color name="story_grey_text_item">#444444</color>
+    <color name="story_more_text_color">#00adb4</color>
+    <color name="send_title_before">#a0a0a0</color>
+
+
+    <!-- titleBar背景 -->
+    <color name="titlebar_background">#46d0d6</color>
+
+    <!-- 充值历史价格颜色 -->
+    <color name="balance_history_price_recharge">#0f9f00</color>
+    <color name="balance_history_price_pay">#f86f00</color>
+
+    <!-- 自定义对话框 -->
+    <color name="my_alert_dialog_text_green">#11d2e0</color>
+    <color name="my_alert_dialog_text_gray">#9c9c9c</color>
+    <color name="my_alert_dialog_bg_gray">#f6f6f6</color>
+    <!-- square shell dialog -->
+    <color name="square_shell_dialog_text">#fb5c08</color>
+
+
+    <!-- 更多分类-->
+    <color name="more_cate_view_gray_line">#dcdcdc</color>
+    <color name="more_cate_view_bg">#ffffff</color>
+    <color name="more_cate_view__gray_text">#898989</color>
+
+    <color name="story_cate_press_list_item_pressed">#4346d0d6</color>
+
+    <color name="default_img_bg_color">#d9d9d9</color>
+
+    <color name="square_item_pressed">#40000000</color>
+    <color name="square_add_plugin_color">#a0a0a0</color>
+
+
+    <!-- 家长社区-->
+    <color name="parent_community_item_title_color">#444444</color>
+    <color name="parent_community_item_name_color">#a0a0a0</color>
+
+    <!--pull -->
+    <color name="pull_btn_color">#15000000</color>
+
+
+    <!--update wifi time tips -->
+    <color name="update_wifi_time_text_color">#9fecfa</color>
+    <color name="update_btn_bg_color">#42dff6</color>
+
+    <!--发帖功能相关色值-->
+    <color name="btn_normal_color">#f86f00</color>
+    <color name="btn_selector_color">#7c3700</color>
+    <color name="cla0a0a0">#a0a0a0</color>
+    <color name="cl444444">#444444</color>
+    <color name="clf7f7f7">#f7f7f7</color>
+    <color name="clffffff">#ffffff</color>
+    <color name="cleeeeee">#eeeeee</color>
+    <color name="cl009847">#009847</color>
+
+    <color name="btn_bg">#249CD3</color>
+
+    <color name="title_color">#252424</color>
+    <color name="blue">#ff0000ff</color>
+    <drawable name="dkgray">#80808FF0</drawable>
+    <drawable name="yello">#F8F8FF00</drawable>
+    <drawable name="white">#FFFFFF</drawable>
+    <drawable name="darkgray">#938192</drawable>
+    <drawable name="lightgreen">#7cd12e</drawable>
+    <drawable name="black">#ff000000</drawable>
+    <drawable name="blue">#ff0000ff</drawable>
+    <drawable name="cyan">#ff00ffff</drawable>
+    <color name="gray_tran">#8d888888</color>
+
+    <color name="number_bg">#56888888</color>
+    <drawable name="gray">#ff888888</drawable>
+    <drawable name="green">#ff00ff00</drawable>
+    <color name="ltgray">#ffcccccc</color>
+    <drawable name="magenta">#ffff00ff</drawable>
+    <drawable name="red">#ffff0000</drawable>
+    <drawable name="transparent">#00000000</drawable>
+    <drawable name="yellow">#ffffff00</drawable>
+
+    <drawable name="back_popu">#00000000</drawable>
+
+    <color name="line">#ece7e7e7</color>
 </resources>

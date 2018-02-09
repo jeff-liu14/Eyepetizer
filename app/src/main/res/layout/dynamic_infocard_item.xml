@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -16,6 +17,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
     </LinearLayout>
 
@@ -27,7 +29,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_nickname"
+            android:id="@+id/tv_dynamic_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="title"
@@ -44,7 +46,7 @@
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/tv_content"
+            android:id="@+id/tv_dynamic_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -56,17 +58,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/eee"
+            android:background="@drawable/bg_auto_shap"
             android:orientation="horizontal">
 
-            <ImageView
+            <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/iv_conver"
                 android:layout_width="120dp"
                 android:layout_height="80dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginBottom="9dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="9dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,7 +77,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_title"
+                    android:id="@+id/tv_dynamic_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -83,10 +85,11 @@
                     android:maxLines="2"
                     android:text="title"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_des"
+                    android:id="@+id/tv_dynamic_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -112,7 +115,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/tv_time"
+                android:id="@+id/tv_dynamic_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -123,9 +126,9 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
+            android:layout_height="0.5dp"
             android:layout_marginTop="10dp"
-            android:background="@color/eee" />
+            android:background="@color/line" />
 
     </LinearLayout>
 </LinearLayout>

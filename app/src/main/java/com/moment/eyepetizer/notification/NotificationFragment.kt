@@ -1,50 +1,26 @@
 package com.moment.eyepetizer.notification
 
+import android.content.Intent
 import android.graphics.Typeface
-import android.view.View
-import com.alibaba.fastjson.JSON
-import com.alibaba.fastjson.JSONObject
 import com.moment.eyepetizer.R
 import com.moment.eyepetizer.base.BaseFragment
-import com.moment.eyepetizer.net.CallBack
-import com.moment.eyepetizer.net.GetDataList
-import com.moment.eyepetizer.net.entity.Result
+import com.moment.eyepetizer.search.SearchActivity
 import kotlinx.android.synthetic.main.notification_fragment.*
 
 /**
  * Created by moment on 2018/2/2.
  */
 class NotificationFragment : BaseFragment() {
-    override fun getLayoutId(): Int {
-        return R.layout.notification_fragment
-    }
+    override fun getLayoutId(): Int = R.layout.notification_fragment
 
     override fun initView() {
-        tv_test.typeface = Typeface.createFromAsset(activity.assets, "fonts/Lobster-1.4.otf")
-        tv_test!!.setOnClickListener {
-            tv_test!!.text = System.currentTimeMillis().toString()
-            GetDataList.discovery(object : CallBack<Result> {
-                override fun onNext(t: Result) {
-                    if (t != null) {
-                        var data: Object? = t.itemList!![0].data
-                        var jsons: String = JSONObject.toJSONString(data)
-                        var obj: JSONObject = JSON.parseObject(jsons)
-                        tv_test!!.text = jsons
-                    }
-                }
-
-                override fun onError(e: Throwable) {
-                    if (e != null) {
-                        tv_test!!.text = e.message
-                    }
-                }
-
-                override fun onCompleted() = Unit
-            })
-        }
+        tv_bar_title.typeface = Typeface.createFromAsset(activity.assets, "fonts/Lobster-1.4.otf")
     }
 
-    override fun initData() {
+    override fun initData() = iv_search.setOnClickListener {
+        var intent = Intent(activity, SearchActivity::class.java)
+        startActivity(intent)
+        activity.overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_in_top)
     }
 
 }

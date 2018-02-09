@@ -1,5 +1,6 @@
 package com.moment.eyepetizer.net
 
+import android.text.TextUtils
 import android.util.Log
 
 import java.io.IOException
@@ -24,7 +25,6 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import com.moment.eyepetizer.utils.Constant
-import com.moment.eyepetizer.utils.StringUtils
 
 /**
  * Created by moment on 2018/2/1.
@@ -66,7 +66,7 @@ class RetrofitUtils {
             okBuilder.connectTimeout(10, TimeUnit.SECONDS)
             okBuilder.writeTimeout(20, TimeUnit.SECONDS)
             okBuilder.sslSocketFactory(sslSocketFactory)
-            okBuilder.hostnameVerifier { hostname, session -> true }
+            okBuilder.hostnameVerifier { _, _ -> true }
 
 
             val logging = HttpLoggingInterceptor()
@@ -112,35 +112,33 @@ class RetrofitUtils {
             val duration = endTime - startTime
             val mediaType = response.body()!!.contentType()
             val content = response.body()!!.string()
-            if (true) {
-                Log.d(TAG, "\n")
-                Log.d(TAG, "\n")
-                Log.d(TAG, "----------Start----------------")
-                Log.d(TAG, "| " + request.toString())
-                val headers = request.headers()
-                Log.d(TAG, "| RequestHeaders:{" + headers.toString() + "}")
-                val method = request.method()
-                if ("POST" == method) {
-                    val sb = StringBuilder()
-                    if (request.body() is FormBody) {
-                        val body = request.body() as FormBody?
-                        for (i in 0 until body!!.size()) {
-                            val str = URLDecoder.decode(body.encodedValue(i), "utf-8")
-                            if (StringUtils.isNumeric(str)) {
-                                sb.append("\"" + body.encodedName(i) + "\"" + ":" + str + ",")
-                            } else {
-                                sb.append("\"" + body.encodedName(i) + "\"" + ":" + "\"" + str + "\"" + ",")
-                            }
+            Log.d(TAG, "\n")
+            Log.d(TAG, "\n")
+            Log.d(TAG, "----------Start----------------")
+            Log.d(TAG, "| " + request.toString())
+            val headers = request.headers()
+            Log.d(TAG, "| RequestHeaders:{" + headers.toString() + "}")
+            val method = request.method()
+            if ("POST" == method) {
+                val sb = StringBuilder()
+                if (request.body() is FormBody) {
+                    val body = request.body() as FormBody?
+                    for (i in 0 until body!!.size()) {
+                        val str = URLDecoder.decode(body.encodedValue(i), "utf-8")
+                        if (isNumeric(str)) {
+                            sb.append("\"" + body.encodedName(i) + "\"" + ":" + str + ",")
+                        } else {
+                            sb.append("\"" + body.encodedName(i) + "\"" + ":" + "\"" + str + "\"" + ",")
                         }
-                        sb.delete(sb.length - 1, sb.length)
-                        Log.d(TAG, "| RequestParams:{" + sb.toString() + "}")
                     }
+                    sb.delete(sb.length - 1, sb.length)
+                    Log.d(TAG, "| RequestParams:{" + sb.toString() + "}")
                 }
-                Log.d(TAG, "| Response:" + content)
-                Log.d(TAG, "----------End:" + duration + "毫秒----------")
-                Log.d(TAG, "\n")
-                Log.d(TAG, "\n")
             }
+            Log.d(TAG, "| Response:" + content)
+            Log.d(TAG, "----------End:" + duration + "毫秒----------")
+            Log.d(TAG, "\n")
+            Log.d(TAG, "\n")
             return response.newBuilder()
                     .body(okhttp3.ResponseBody.create(mediaType, content))
                     .build()
@@ -156,5 +154,13 @@ class RetrofitUtils {
 
     companion object {
         private var retrofit: Retrofit? = null
+
+        fun isNumeric(cs: CharSequence): Boolean {
+            if (TextUtils.isEmpty(cs)) {
+                return false
+            }
+            val sz = cs.length
+            return (0 until sz).any { Character.isDigit(cs[it]) }
+        }
     }
 }

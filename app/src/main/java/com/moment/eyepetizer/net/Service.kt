@@ -43,6 +43,16 @@ interface Service {
                @Query("follow") follow: Boolean,
                @Query("startId") startId: Int): Observable<Result>
 
+    //关注
+    @GET("/api/v3/queries/hot")
+    fun hot(): Observable<List<String>>
+
+    //关注
+    @GET("/api/v1/search")
+    fun search(@Query("query") query: String,
+               @Query("start") start: Int,
+               @Query("num") num: Int): Observable<Result>
+
     //POST
 //    @FormUrlEncoded
 //    @POST("api/v5/index/tab/discovery")

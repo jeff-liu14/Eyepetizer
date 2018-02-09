@@ -1,7 +1,6 @@
 package com.moment.eyepetizer.base
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 
 /**
@@ -13,6 +12,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
+        initPresenter()
         initEvent()
         initView()
         initData()
@@ -24,7 +24,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun initData()
 
-    internal open fun initEvent() {
+    internal open fun initEvent() = Unit
 
-    }
+    internal open fun initPresenter() = Unit
 }

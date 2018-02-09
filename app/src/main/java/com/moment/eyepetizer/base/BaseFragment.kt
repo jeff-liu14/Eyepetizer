@@ -19,6 +19,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initPresenter()
         initEvent()
         initView()
         initData()
@@ -30,8 +31,8 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun initData()
 
-    internal open fun initEvent() {
+    internal open fun initEvent() = Unit
 
-    }
+    internal open fun initPresenter() = Unit
 
 }
