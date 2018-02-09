@@ -27,6 +27,12 @@
 
 本项目所有API均来自开眼视频，数据接口均属于非正常渠道获取，请勿用于商业用途，原公司拥有数据所有权，侵权删.
 
+用到的开源框架：
+
+[RxRelay](https://github.com/JakeWharton/RxRelay)
+
+[FlycoTabLayout](https://github.com/H07000223/FlycoTabLayout)
+
 链接：[开眼视频官网](http://www.kaiyanapp.com/)
 # Demo下载
 
