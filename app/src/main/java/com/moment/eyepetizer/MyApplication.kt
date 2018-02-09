@@ -6,9 +6,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import android.widget.Toast
-import com.bumptech.glide.Glide
-import com.nostra13.universalimageloader.core.ImageLoader
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import com.squareup.leakcanary.LeakCanary
 
 
@@ -44,12 +41,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val configuration = ImageLoaderConfiguration
-                .createDefault(this)
-
-        //Initialize ImageLoader with configuration.
-        ImageLoader.getInstance().init(configuration)
-        LeakCanary.install(this)
+//        LeakCanary.install(this)
 
     }
 

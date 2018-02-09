@@ -14,10 +14,39 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("kaiyan.jks")
+            storePassword "kaiyan"
+            keyAlias "kaiyan"
+            keyPassword "kaiyan"
+        }
+
+        release {
+            storeFile file("kaiyan.jks")
+            storePassword "kaiyan"
+            keyAlias "kaiyan"
+            keyPassword "kaiyan"
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为boohee_v1.0_2015-01-15_wandoujia.apk v${defaultConfig.versionName}
+                        def fileName = "kaiyan-${defaultConfig.versionName}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
         }
     }
 }

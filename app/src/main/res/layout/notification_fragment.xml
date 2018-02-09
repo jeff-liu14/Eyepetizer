@@ -45,7 +45,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/iv_tip"
@@ -76,6 +77,21 @@
             android:text="登录后即可查看评论回复、点赞及关注等通知消息"
             android:textColor="@color/black"
             android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_tip_sub"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@color/lite_blue"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
     </RelativeLayout>
 </LinearLayout>
