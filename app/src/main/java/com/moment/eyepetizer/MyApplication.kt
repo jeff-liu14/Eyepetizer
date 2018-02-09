@@ -6,7 +6,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import android.widget.Toast
-import com.squareup.leakcanary.LeakCanary
 
 
 /**
@@ -39,27 +38,21 @@ class MyApplication : Application() {
         return wm.defaultDisplay.height
     }
 
-    override fun onCreate() {
-        super.onCreate()
-//        LeakCanary.install(this)
-
-    }
+    override fun onCreate() = super.onCreate()
 
     /**
      * 支持非ui线程Toast，可避免多个Toast队列等待
      *
      * @param resId
      */
-    fun showToast(resId: Int) {
-        showToast(resources.getString(resId))
-    }
+    fun showToast(resId: Int) = showToast(resources.getString(resId))
 
     /**
      * 支持非ui线程Toast，可避免多个Toast队列等待
      *
      * @param text
      */
-    fun showToast(text: CharSequence) {
+    private fun showToast(text: CharSequence) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             handler.post(Runnable { Toast.makeText(MyApplication().getInstance(), text, Toast.LENGTH_SHORT) })
         } else {
@@ -84,9 +77,7 @@ class MyApplication : Application() {
      *
      * @param text
      */
-    fun showToastCenter(text: CharSequence) {
-        showToastCenter(text, Toast.LENGTH_SHORT)
-    }
+    fun showToastCenter(text: CharSequence) = showToastCenter(text, Toast.LENGTH_SHORT)
 
     private fun showToastCenter(text: CharSequence, duration: Int) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
