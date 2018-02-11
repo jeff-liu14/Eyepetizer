@@ -3,6 +3,7 @@ package com.moment.eyepetizer.home
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
+import android.util.Log
 import com.moment.eyepetizer.R
 import com.moment.eyepetizer.base.BaseFragment
 import com.moment.eyepetizer.event.RxBus
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.moment.eyepetizer.home.adapter.MyMultiTypeAdapter
 import com.moment.eyepetizer.home.mvp.CategoryContract
 import com.moment.eyepetizer.home.mvp.CategoryPresenter
+import kotlinx.android.synthetic.*
 
 
 /**
@@ -24,7 +26,7 @@ import com.moment.eyepetizer.home.mvp.CategoryPresenter
 
 class CategoryFragment(id: String) : BaseFragment(), CategoryContract.CategoryView {
 
-    private lateinit var presenter: CategoryContract.CategoryPresenter
+    private var presenter: CategoryContract.CategoryPresenter? = null
     var adapter: MyMultiTypeAdapter? = null
     var isRefresh: Boolean = false
     var category_id = id
@@ -41,7 +43,7 @@ class CategoryFragment(id: String) : BaseFragment(), CategoryContract.CategoryVi
                             swipeRefreshLayout.autoRefresh(0)
                         } else {
                             if (adapter != null && adapter!!.itemCount == 0) {
-                                presenter.category(category_id.toInt(), start_num, num)
+                                presenter!!.category(category_id.toInt(), start_num, num)
                             }
                         }
                     }
@@ -49,17 +51,19 @@ class CategoryFragment(id: String) : BaseFragment(), CategoryContract.CategoryVi
     }
 
     override fun initView() {
+        Log.e("Fragment", "CategoryFragment initView()")
         swipeRefreshLayout.isEnableAutoLoadmore = true
         swipeRefreshLayout.refreshHeader = ClassicsHeader(activity)
         swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
-        swipeRefreshLayout.setOnRefreshListener {
-            isRefresh = true
-            presenter.category(category_id.toInt(), start_num, num)
-        }
+//        swipeRefreshLayout.setOnRefreshListener {
+//            isRefresh = true
+//            presenter!!.category(category_id.toInt(), start_num, num)
+//        }
+        swipeRefreshLayout.isEnableRefresh = false
 
         swipeRefreshLayout.setOnLoadmoreListener {
             isRefresh = false
-            presenter.category(category_id.toInt(), start_num, num)
+            presenter!!.category(category_id.toInt(), start_num, num)
         }
 
         recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -129,5 +133,15 @@ class CategoryFragment(id: String) : BaseFragment(), CategoryContract.CategoryVi
         swipeRefreshLayout.isLoadmoreFinished = false
         swipeRefreshLayout.finishLoadmore()
         swipeRefreshLayout.finishRefresh()
+    }
+
+    override fun onDestroyView() {
+        recyclerview!!.adapter = null
+        adapter = null
+        presenter = null
+        recyclerview!!.addOnScrollListener(null)
+        clearFindViewByIdCache()
+        Log.e("Fragment", "CategoryFragment onDestroy() " + category_id)
+        super.onDestroyView()
     }
 }

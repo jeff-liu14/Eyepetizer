@@ -4,11 +4,36 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/id_index_gallery_item_image"
+    <!--<ImageView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:id="@+id/id_index_gallery_item_image"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginRight="5dp" />-->
+
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp">
+
+        <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/id_index_gallery_item_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/btn_shap_time"
+            android:text="02:28"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_title"

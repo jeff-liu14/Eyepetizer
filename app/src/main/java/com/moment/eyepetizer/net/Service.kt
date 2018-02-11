@@ -1,6 +1,7 @@
 package com.moment.eyepetizer.net
 
 import com.moment.eyepetizer.net.entity.Categories
+import com.moment.eyepetizer.net.entity.CategoryInfo
 import com.moment.eyepetizer.net.entity.Result
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -52,6 +53,16 @@ interface Service {
     fun search(@Query("query") query: String,
                @Query("start") start: Int,
                @Query("num") num: Int): Observable<Result>
+
+    //标签详情页列标
+    @GET("/api/v4/categories/detail/tab")
+    fun categoriesDetail(@Query("id") id: Int): Observable<CategoryInfo>
+
+    //标签详情页列标
+    @GET
+    fun categoriesTagList(@Url path: String,
+                          @QueryMap map: HashMap<String, String>): Observable<Result>
+
 
     //POST
 //    @FormUrlEncoded

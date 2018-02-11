@@ -5,7 +5,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@drawable/landing_background</item>
+        <!--<item name="android:windowBackground">@drawable/landing_background</item>-->
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
     </style>
 </resources>

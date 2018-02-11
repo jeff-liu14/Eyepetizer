@@ -9,6 +9,8 @@ import com.moment.eyepetizer.R
 import com.moment.eyepetizer.base.BaseFragment
 import kotlinx.android.synthetic.main.home_fragment.*
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.view.ViewGroup
 import com.moment.eyepetizer.event.RxBus
@@ -18,15 +20,18 @@ import com.moment.eyepetizer.home.mvp.CategoriesContract
 import com.moment.eyepetizer.home.mvp.CategoriesPresenter
 import com.moment.eyepetizer.net.entity.Categories
 import com.moment.eyepetizer.search.SearchActivity
+import com.moment.eyepetizer.utils.ImageLoad
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.*
+import java.lang.ref.WeakReference
 
 
 /**
  * Created by moment on 2018/2/2.
  */
 class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesContract.CategoriesView {
-    private lateinit var presenter: CategoriesContract.CategoriesPresenter
+    private var presenter: CategoriesContract.CategoriesPresenter? = null
     private var currentIndex = ""
 
     private var mFragments = ArrayList<Fragment>()
@@ -68,7 +73,7 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
     private var mTitle: ArrayList<String> = ArrayList()
     private var mAdapter: MyPagerAdapter? = null
     override fun initData() {
-        presenter.categories()
+        presenter!!.categories()
     }
 
     override fun setPresenter(presenter: CategoriesContract.CategoriesPresenter) {
@@ -105,7 +110,7 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
         viewpager.adapter = mAdapter
         val stringArray = mTitle.toArray(arrayOfNulls<String>(0))
         tab_layout.setViewPager(viewpager, stringArray)
-        viewpager.offscreenPageLimit = mTitles.size
+        viewpager.offscreenPageLimit = 3
         viewpager.currentItem = 0
         viewpager.addOnPageChangeListener(this)
     }
@@ -113,7 +118,7 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
     override fun onCategoriesFail(error: Throwable) =
             Toast.makeText(activity, error.message + "", Toast.LENGTH_SHORT).show()
 
-    private inner class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    private inner class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
         override fun getCount(): Int = mFragments.size
 
@@ -121,9 +126,7 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
 
         override fun getItem(position: Int): Fragment = mFragments[position]
 
-        override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) =
-                //            super.destroyItem(container, position, `object`)
-                Unit
+        override fun getItemPosition(`object`: Any?): Int = PagerAdapter.POSITION_NONE
     }
 
     override fun onPageScrollStateChanged(state: Int) = Unit
@@ -137,5 +140,14 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
             currentIndex = entity.category_id.toString()
             RxBus.default!!.post(CurrentTagEvent(currentIndex, false))
         }
+        ImageLoad().clearCache(WeakReference(activity.applicationContext))
+    }
+
+    override fun onDestroyView() {
+        mFragments!!.clear()
+        mAdapter = null
+        viewpager!!.adapter = null
+        clearFindViewByIdCache()
+        super.onDestroyView()
     }
 }

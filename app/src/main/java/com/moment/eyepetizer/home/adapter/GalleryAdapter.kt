@@ -10,6 +10,7 @@ import android.widget.ImageView
 import com.moment.eyepetizer.R
 import com.moment.eyepetizer.utils.DensityUtil
 import com.moment.eyepetizer.utils.ImageLoad
+import java.lang.ref.WeakReference
 
 
 /**
@@ -45,7 +46,7 @@ class GalleryAdapter(context: Context, private val mDatas: List<String>) : Recyc
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         var width = getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 25f)
         var height = width * 0.6
-        ImageLoad().load(mContext, mDatas.get(i), viewHolder.mImg, width.toDouble().toInt(), height.toDouble().toInt(), 5)
+        ImageLoad().load(WeakReference(mContext), mDatas.get(i), viewHolder.mImg, width.toDouble().toInt(), height.toDouble().toInt(), 5)
     }
 
     private fun getScreenWidth(context: Context): Int {

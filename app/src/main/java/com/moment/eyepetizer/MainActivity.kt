@@ -12,6 +12,7 @@ import com.moment.eyepetizer.mine.MineFragment
 import com.moment.eyepetizer.notification.NotificationFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import com.moment.eyepetizer.utils.ImageLoad
+import java.lang.ref.WeakReference
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .hide(mineFragment)
                         .hide(notificationFragment)
                         .commit()
-                ImageLoad().clearCache(this@MainActivity.applicationContext)
+                ImageLoad().clearCache(WeakReference(this@MainActivity.applicationContext))
             }
             R.id.rb_home -> {
                 rb_home.isChecked = true
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .hide(mineFragment)
                         .hide(followFragment)
                         .commit()
-                ImageLoad().clearCache(this@MainActivity.applicationContext)
+                ImageLoad().clearCache(WeakReference(this@MainActivity.applicationContext))
             }
             R.id.rb_notification -> {
                 rb_notification.isChecked = true
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .hide(mineFragment)
                         .hide(homeFragment)
                         .commit()
-                ImageLoad().clearCache(this@MainActivity.applicationContext)
+                ImageLoad().clearCache(WeakReference(this@MainActivity.applicationContext))
             }
             R.id.rb_mine -> {
                 rb_mine.isChecked = true
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .hide(homeFragment)
                         .hide(notificationFragment)
                         .commit()
-                ImageLoad().clearCache(this@MainActivity.applicationContext)
+                ImageLoad().clearCache(WeakReference(this@MainActivity.applicationContext))
             }
         }
     }

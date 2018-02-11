@@ -12,6 +12,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.DrawableImageViewTarget
 import com.moment.eyepetizer.R
+import java.lang.ref.WeakReference
 
 
 /**
@@ -20,7 +21,7 @@ import com.moment.eyepetizer.R
 
 class ImageLoad {
 
-    open fun load(context: Context, url: String, image: ImageView?) {
+    open fun load(context: WeakReference<Context>, url: String, image: ImageView?) {
         if (image == null) return
         var requestOptions = RequestOptions().centerCrop()
                 .placeholder(R.drawable.default_banner)
@@ -29,17 +30,16 @@ class ImageLoad {
                 .format(DecodeFormat.PREFER_RGB_565)
                 .priority(Priority.LOW)
                 .dontAnimate()
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
-        Glide.with(context.applicationContext)
+        Glide.with(context.get()!!.applicationContext)
                 .load(url)
                 .apply(requestOptions)
                 .into(object : DrawableImageViewTarget(image) {
                 })
     }
 
-    open fun load(context: Context, url: String, image: ImageView?, width: Int, height: Int) {
+    open fun load(context: WeakReference<Context>, url: String, image: ImageView?, width: Int, height: Int) {
         if (image == null) return
         var lp = image.layoutParams
         lp.width = width
@@ -53,40 +53,40 @@ class ImageLoad {
                 .transform(CenterCrop())
                 .dontAnimate()
                 .priority(Priority.LOW)
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .skipMemoryCache(true)
-        Glide.with(context.applicationContext)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+
+        Glide.with(context.get()!!.applicationContext)
                 .load(url)
                 .apply(requestOptions)
                 .into(object : DrawableImageViewTarget(image) {
                 })
     }
 
-    open fun loadCircle(context: Context, url: String, image: ImageView?) {
+    open fun loadCircle(context: WeakReference<Context>, url: String, image: ImageView?) {
         if (image == null) return
         var lp = image.layoutParams
-        lp.width = DensityUtil.dip2px(context, 40f)
-        lp.height = DensityUtil.dip2px(context, 40f)
+        lp.width = DensityUtil.dip2px(context.get()!!, 40f)
+        lp.height = DensityUtil.dip2px(context.get()!!, 40f)
         image.layoutParams = lp
         var requestOptions = RequestOptions().centerCrop()
                 .placeholder(R.drawable.default_icon)
                 .error(R.drawable.default_icon)
                 .format(DecodeFormat.PREFER_RGB_565)
                 .transform(CenterCrop())
-                .override(DensityUtil.dip2px(context, 40f))
+                .override(DensityUtil.dip2px(context.get()!!, 40f))
                 .dontAnimate()
                 .priority(Priority.LOW)
                 .transform(CircleCrop())
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .skipMemoryCache(true)
-        Glide.with(context.applicationContext)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+
+        Glide.with(context.get()!!.applicationContext)
                 .load(url)
                 .apply(requestOptions)
                 .into(object : DrawableImageViewTarget(image) {
                 })
     }
 
-    open fun load(context: Context, url: String, image: ImageView?, width: Int, height: Int, round: Int) {
+    open fun load(context: WeakReference<Context>, url: String, image: ImageView?, width: Int, height: Int, round: Int) {
         if (image == null) return
         var lp = image.layoutParams
         lp.width = width
@@ -96,21 +96,42 @@ class ImageLoad {
                 .placeholder(R.drawable.default_banner)
                 .error(R.drawable.default_banner)
                 .format(DecodeFormat.PREFER_RGB_565)
-                .dontAnimate()
                 .override(width, height)
                 .priority(Priority.LOW)
-                .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(context, round.toFloat())))
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .skipMemoryCache(true)
-        Glide.with(context.applicationContext)
+                .dontAnimate()
+                .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(context.get()!!, round.toFloat())))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+
+        Glide.with(context.get()!!.applicationContext)
                 .load(url)
                 .apply(requestOptions)
                 .into(object : DrawableImageViewTarget(image) {
                 })
     }
 
-    open fun clearCache(context: Context) = Thread(Runnable {
-        Glide.get(context.applicationContext).clearDiskCache()
-    }).start()
+    open fun load(context: WeakReference<Context>, url: String, image: ImageView?, round: Int) {
+        if (image == null) return
+        var requestOptions = RequestOptions().centerCrop()
+                .placeholder(R.drawable.default_banner)
+                .error(R.drawable.default_banner)
+                .format(DecodeFormat.PREFER_RGB_565)
+                .priority(Priority.LOW)
+                .dontAnimate()
+                .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(context.get()!!, round.toFloat())))
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+
+        Glide.with(context.get()!!.applicationContext)
+                .load(url)
+                .apply(requestOptions)
+                .into(object : DrawableImageViewTarget(image) {
+                })
+    }
+
+    open fun clearCache(context: WeakReference<Context>) {
+        Thread(Runnable {
+            Glide.get(context.get()!!.applicationContext).clearDiskCache()
+        }).start()
+        Glide.get(context.get()!!.applicationContext).clearMemory()
+    }
 
 }

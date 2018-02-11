@@ -4,44 +4,52 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.util.Log
-import com.bumptech.glide.Glide
 import com.moment.eyepetizer.R
 import com.moment.eyepetizer.base.BaseFragment
-import com.moment.eyepetizer.home.adapter.MyMultiTypeAdapter
-import com.moment.eyepetizer.home.mvp.FeedContract
-import com.moment.eyepetizer.home.mvp.FeedPresenter
 import com.moment.eyepetizer.net.entity.Result
 import com.moment.eyepetizer.utils.UriUtils
-import com.moment.eyepetizer.utils.unbindDrawables
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import kotlinx.android.synthetic.main.category_taglist_fragment.*
+import com.bumptech.glide.Glide
+import com.moment.eyepetizer.home.adapter.MyMultiTypeAdapter
+import com.moment.eyepetizer.home.mvp.CategoryTabListContract
+import com.moment.eyepetizer.home.mvp.CategoryTabListPresenter
+import com.scwang.smartrefresh.layout.api.RefreshHeader
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.feed_fragment.*
+
 
 /**
- * Created by moment on 2018/2/5.
+ * Created by moment on 2018/2/2.
  */
 
-class FeedFragment : BaseFragment(), FeedContract.FeedView {
-    private var presenter: FeedContract.FeedPresenter? = null
+class CategoryTabListFragment(id: String, path: String) : BaseFragment(), CategoryTabListContract.CategoriesTagListView {
+
+
+    private var presenter: CategoryTabListContract.CategoriesTagListPresenter? = null
     var adapter: MyMultiTypeAdapter? = null
-    var isRefresh: Boolean = false
-    var data: Long = System.currentTimeMillis()
-    override fun getLayoutId(): Int = R.layout.feed_fragment
+    private var isRefresh: Boolean = false
+    private var category_id = id
+    private var path: String? = path
+    private var map: HashMap<String, String>? = HashMap()
+    override fun getLayoutId(): Int = R.layout.category_taglist_fragment
 
     override fun initView() {
-        Log.e("Fragment", "FeedFragment initView()")
+
+        Log.e("Fragment", "CategoryFragment initView()")
         swipeRefreshLayout.isEnableAutoLoadmore = true
-        swipeRefreshLayout.refreshHeader = ClassicsHeader(activity)
+        swipeRefreshLayout.refreshHeader = ClassicsHeader(activity) as RefreshHeader?
         swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
+
         swipeRefreshLayout.setOnRefreshListener {
             isRefresh = true
-            initData()
+            map!!.clear()
+            map!!.put("id", category_id)
+            presenter!!.categoriesTagList(path.toString(), map!!)
         }
-
         swipeRefreshLayout.setOnLoadmoreListener {
             isRefresh = false
-            initData()
+            presenter!!.categoriesTagList(path.toString(), this!!.map!!)
         }
 
         recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -64,6 +72,8 @@ class FeedFragment : BaseFragment(), FeedContract.FeedView {
 
             }
         })
+
+
         val list = ArrayList<Result.ItemList>()
         val layoutManager = LinearLayoutManager(this.activity!!)
         recyclerview.layoutManager = layoutManager
@@ -73,24 +83,27 @@ class FeedFragment : BaseFragment(), FeedContract.FeedView {
     }
 
     override fun initPresenter() {
-        FeedPresenter(this)
+        CategoryTabListPresenter(this)
     }
 
     override fun initData() {
-        presenter!!.feed(data)
+        map!!.put("id", category_id)
+        presenter!!.categoriesTagList(this!!.path!!, map!!)
     }
 
-    override fun setPresenter(presenter: FeedContract.FeedPresenter) {
+    override fun setPresenter(presenter: CategoryTabListContract.CategoriesTagListPresenter) {
         this.presenter = presenter
     }
 
-    override fun onFeedSucc(t: Result) {
-        if (!TextUtils.isEmpty(t.nextPageUrl)) {
-            data = UriUtils().parseFeedUri(t.nextPageUrl.toString()).data
-        }
+    override fun onCategoriesTagSucc(t: Result) {
         swipeRefreshLayout.finishLoadmore()
         swipeRefreshLayout.finishRefresh()
         swipeRefreshLayout.isLoadmoreFinished = TextUtils.isEmpty(t.nextPageUrl)
+        if (!TextUtils.isEmpty(t.nextPageUrl)) {
+            var categoriesTagListParse = UriUtils().parseCategoriesTagListUri(t.nextPageUrl.toString())
+            map!!.clear()
+            map = categoriesTagListParse.map
+        }
         if (t.itemList!!.isEmpty()) return
         val start = adapter!!.itemCount
         if (isRefresh) {
@@ -104,19 +117,19 @@ class FeedFragment : BaseFragment(), FeedContract.FeedView {
         }
     }
 
-    override fun onFeedFail(error: Throwable) {
+    override fun onCategoriesTagFail(error: Throwable) {
         swipeRefreshLayout.isLoadmoreFinished = false
         swipeRefreshLayout.finishLoadmore()
-        swipeRefreshLayout.finishRefresh()
     }
 
+
     override fun onDestroyView() {
-        Log.e("Fragment", "FeedFragment onDestroy()")
-        presenter = null
         recyclerview!!.adapter = null
         adapter = null
+        presenter = null
         recyclerview!!.addOnScrollListener(null)
         clearFindViewByIdCache()
+        Log.e("Fragment", "CategoryFragment onDestroy() " + category_id)
         super.onDestroyView()
     }
 }

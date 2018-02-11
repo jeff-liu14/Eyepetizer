@@ -3,6 +3,7 @@ package com.moment.eyepetizer.home
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.moment.eyepetizer.R
 import com.moment.eyepetizer.base.BaseFragment
@@ -10,8 +11,10 @@ import com.moment.eyepetizer.home.adapter.MyMultiTypeAdapter
 import com.moment.eyepetizer.home.mvp.DiscoveryContract
 import com.moment.eyepetizer.home.mvp.DiscoveryPresenter
 import com.moment.eyepetizer.net.entity.Result
+import com.moment.eyepetizer.utils.unbindDrawables
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.discovery_fragment.*
 
 /**
@@ -19,13 +22,14 @@ import kotlinx.android.synthetic.main.discovery_fragment.*
  */
 
 class DiscoveryFragment : BaseFragment(), DiscoveryContract.DiscoveryView {
-    private lateinit var presenter: DiscoveryContract.DiscoveryPresenter
+    private var presenter: DiscoveryContract.DiscoveryPresenter? = null
     var adapter: MyMultiTypeAdapter? = null
     var isRefresh: Boolean = false
     override fun getLayoutId(): Int = R.layout.discovery_fragment
 
 
     override fun initView() {
+        Log.e("Fragment", "DiscoveryFragment initView()")
         swipeRefreshLayout.isEnableAutoLoadmore = true
         swipeRefreshLayout.refreshHeader = ClassicsHeader(activity)
         swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
@@ -62,7 +66,7 @@ class DiscoveryFragment : BaseFragment(), DiscoveryContract.DiscoveryView {
     }
 
     override fun initData() {
-        presenter.discovery()
+        presenter!!.discovery()
     }
 
     override fun initPresenter() {
@@ -89,5 +93,14 @@ class DiscoveryFragment : BaseFragment(), DiscoveryContract.DiscoveryView {
         swipeRefreshLayout.finishRefresh()
     }
 
+    override fun onDestroyView() {
+        presenter = null
+        recyclerview!!.adapter = null
+        adapter = null
+        recyclerview!!.addOnScrollListener(null)
+        clearFindViewByIdCache()
+        Log.e("Fragment", "DiscoveryFragment onDestroy()")
+        super.onDestroyView()
+    }
 
 }

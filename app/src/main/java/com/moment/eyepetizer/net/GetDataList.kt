@@ -1,6 +1,7 @@
 package com.moment.eyepetizer.net
 
 import com.moment.eyepetizer.net.entity.Categories
+import com.moment.eyepetizer.net.entity.CategoryInfo
 import com.moment.eyepetizer.net.entity.Result
 
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -72,6 +73,22 @@ object GetDataList {
 
     fun hot(callBack: CallBack<List<String>>): Disposable = RetrofitUtils().with().build()
             .hot()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> callBack.onNext(result) },
+                    { throwable: Throwable -> callBack.onError(throwable) },
+                    { callBack.onCompleted() })
+
+    fun categoriesDetail(id: Int, callBack: CallBack<CategoryInfo>): Disposable = RetrofitUtils().with().build()
+            .categoriesDetail(id)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> callBack.onNext(result) },
+                    { throwable: Throwable -> callBack.onError(throwable) },
+                    { callBack.onCompleted() })
+
+    fun categoriesTagList(path: String, map: HashMap<String, String>, callBack: CallBack<Result>): Disposable = RetrofitUtils().with().build()
+            .categoriesTagList(path, map)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ result -> callBack.onNext(result) },

@@ -1,6 +1,7 @@
 package com.moment.eyepetizer.utils
 
 import android.net.Uri
+import android.util.Log
 
 /**
  * Created by moment on 2018/2/2.
@@ -31,6 +32,21 @@ class UriUtils {
         var query: String? = null
     }
 
+    class CategoriesTagListParse {
+        var map: HashMap<String, String>? = null
+    }
+
+    open fun parseCategoriesTagListUri(url: String): CategoriesTagListParse {
+        var uri: Uri? = Uri.parse(url)
+        var map: HashMap<String, String> = HashMap()
+        for (name in uri!!.queryParameterNames) {
+            map.put(name, uri!!.getQueryParameter(name))
+        }
+        var tagListParse = CategoriesTagListParse()
+        tagListParse.map = map
+        return tagListParse
+    }
+
     open fun parseSearchUri(url: String): SearchParse {
         var uri: Uri? = Uri.parse(url)
         var start: Int = uri!!.getQueryParameter("start").toInt()
@@ -57,6 +73,7 @@ class UriUtils {
         var uri: Uri? = Uri.parse(url)
         var start: Int = uri!!.getQueryParameter("start").toInt()
         var num: Int = uri!!.getQueryParameter("num").toInt()
+        var path: String = uri!!.path
         var category = CategoryParse()
         category.start = start
         category.num = num

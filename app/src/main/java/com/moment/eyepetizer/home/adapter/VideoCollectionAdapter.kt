@@ -11,6 +11,8 @@ import android.widget.ImageView
 import com.moment.eyepetizer.R
 import com.moment.eyepetizer.utils.DensityUtil
 import com.moment.eyepetizer.utils.ImageLoad
+import com.moment.eyepetizer.utils.TimeUtils
+import java.lang.ref.WeakReference
 
 
 /**
@@ -24,6 +26,7 @@ class VideoCollectionAdapter(context: Context, private val mDatas: List<VideoCol
         var icon: String? = null
         var title: String? = null
         var category: String? = null
+        var duration: Long? = null
     }
 
     inner class ViewHolder(arg0: View) : RecyclerView.ViewHolder(arg0) {
@@ -31,6 +34,7 @@ class VideoCollectionAdapter(context: Context, private val mDatas: List<VideoCol
         internal var mImg: ImageView? = null
         internal var tv_title: TextView? = null
         internal var tv_content: TextView? = null
+        internal var tv_time: TextView? = null
     }
 
     override fun getItemCount(): Int = mDatas.size
@@ -48,6 +52,7 @@ class VideoCollectionAdapter(context: Context, private val mDatas: List<VideoCol
         viewHolder.tv_title = view.findViewById(R.id.tv_title) as TextView
 
         viewHolder.tv_content = view.findViewById(R.id.tv_content) as TextView
+        viewHolder.tv_time = view.findViewById(R.id.tv_time) as TextView
         return viewHolder
     }
 
@@ -57,9 +62,10 @@ class VideoCollectionAdapter(context: Context, private val mDatas: List<VideoCol
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         var width = getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 25f)
         var height = width * 0.6
-        ImageLoad().load(mContext, mDatas.get(i).icon.toString(), viewHolder.mImg, width.toDouble().toInt(), height.toDouble().toInt(), 5)
+        ImageLoad().load(WeakReference(mContext), mDatas.get(i).icon.toString(), viewHolder.mImg, width.toDouble().toInt(), height.toDouble().toInt(), 5)
         viewHolder.tv_title!!.text = mDatas.get(i).title
         viewHolder.tv_content!!.text = "#" + mDatas.get(i).category
+        viewHolder.tv_time!!.text = TimeUtils.secToTime(mDatas.get(i).duration!!.toInt())
 
     }
 

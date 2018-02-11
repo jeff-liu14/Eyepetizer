@@ -14,9 +14,11 @@ import com.moment.eyepetizer.home.adapter.MyMultiTypeAdapter
 import com.moment.eyepetizer.net.entity.Result
 import com.moment.eyepetizer.search.SearchActivity
 import com.moment.eyepetizer.utils.UriUtils
+import com.moment.eyepetizer.utils.unbindDrawables
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.follow_fragment.*
 
 /**
@@ -25,7 +27,7 @@ import kotlinx.android.synthetic.main.follow_fragment.*
 class FollowFragment : BaseFragment(), FollowContract.FollowView {
 
 
-    private lateinit var presenter: FollowContract.FollowPresenter
+    private var presenter: FollowContract.FollowPresenter? = null
     var adapter: MyMultiTypeAdapter? = null
     var isRefresh: Boolean = false
     var start_num: Int = 0
@@ -90,7 +92,7 @@ class FollowFragment : BaseFragment(), FollowContract.FollowView {
     }
 
     override fun initData() {
-        presenter.follow(start_num, num, follow, startId)
+        presenter!!.follow(start_num, num, follow, startId)
     }
 
     override fun setPresenter(presenter: FollowContract.FollowPresenter) {
@@ -126,4 +128,12 @@ class FollowFragment : BaseFragment(), FollowContract.FollowView {
         swipeRefreshLayout.finishRefresh()
     }
 
+    override fun onDestroyView() {
+        presenter = null
+        recyclerview.adapter = null
+        adapter = null
+        recyclerview.addOnScrollListener(null)
+        clearFindViewByIdCache()
+        super.onDestroyView()
+    }
 }
