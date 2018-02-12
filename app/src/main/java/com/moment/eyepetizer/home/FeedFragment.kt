@@ -36,6 +36,7 @@ class FeedFragment : BaseFragment(), FeedContract.FeedView {
         swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
         swipeRefreshLayout.setOnRefreshListener {
             isRefresh = true
+            data = System.currentTimeMillis()
             initData()
         }
 

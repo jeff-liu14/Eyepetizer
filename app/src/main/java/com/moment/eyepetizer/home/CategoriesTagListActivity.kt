@@ -1,18 +1,13 @@
 package com.moment.eyepetizer.home
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.net.Uri
 import android.support.design.widget.AppBarLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v4.view.PagerAdapter
 import android.util.Log
-import android.view.DragEvent
-import android.view.View
 import com.moment.eyepetizer.R
 import com.moment.eyepetizer.base.BaseActivity
 import com.moment.eyepetizer.home.mvp.CategoriesDetailContract
@@ -72,7 +67,9 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
                         else -> {
 
                             //中间状态
-
+                            toolbar.setNavigationIcon(R.drawable.ic_action_back_white)
+                            tv_title.setTextColor(Color.WHITE)
+                            tv_title.text = ""
                         }
                     }
 

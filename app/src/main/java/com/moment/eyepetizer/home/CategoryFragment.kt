@@ -55,11 +55,13 @@ class CategoryFragment(id: String) : BaseFragment(), CategoryContract.CategoryVi
         swipeRefreshLayout.isEnableAutoLoadmore = true
         swipeRefreshLayout.refreshHeader = ClassicsHeader(activity)
         swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
-//        swipeRefreshLayout.setOnRefreshListener {
-//            isRefresh = true
-//            presenter!!.category(category_id.toInt(), start_num, num)
-//        }
-        swipeRefreshLayout.isEnableRefresh = false
+        swipeRefreshLayout.setOnRefreshListener {
+            isRefresh = true
+            start_num = 0
+            num = 10
+            presenter!!.category(category_id.toInt(), start_num, num)
+        }
+        swipeRefreshLayout.isEnableRefresh = true
 
         swipeRefreshLayout.setOnLoadmoreListener {
             isRefresh = false
@@ -90,7 +92,7 @@ class CategoryFragment(id: String) : BaseFragment(), CategoryContract.CategoryVi
 
         val list = ArrayList<Result.ItemList>()
         val layoutManager = LinearLayoutManager(this.activity!!)
-        recyclerview.layoutManager = layoutManager
+        recyclerview.layoutManager = layoutManager as RecyclerView.LayoutManager?
         adapter = MyMultiTypeAdapter(list, activity)
         recyclerview.adapter = adapter
         isRefresh = false

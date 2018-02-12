@@ -34,6 +34,7 @@ class RecommendFragment : BaseFragment(), RecommendContract.RecommendView {
         swipeRefreshLayout.refreshHeader = ClassicsHeader(activity) as RefreshHeader?
         swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
         swipeRefreshLayout.setOnRefreshListener {
+            page = 0
             isRefresh = true
             initData()
         }

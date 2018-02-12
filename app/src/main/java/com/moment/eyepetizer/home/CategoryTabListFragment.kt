@@ -41,12 +41,13 @@ class CategoryTabListFragment(id: String, path: String) : BaseFragment(), Catego
         swipeRefreshLayout.refreshHeader = ClassicsHeader(activity) as RefreshHeader?
         swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
 
-        swipeRefreshLayout.setOnRefreshListener {
-            isRefresh = true
-            map!!.clear()
-            map!!.put("id", category_id)
-            presenter!!.categoriesTagList(path.toString(), map!!)
-        }
+        swipeRefreshLayout.isEnableRefresh = false
+//        swipeRefreshLayout.setOnRefreshListener {
+//            isRefresh = true
+//            map!!.clear()
+//            map!!.put("id", category_id)
+//            presenter!!.categoriesTagList(path.toString(), map!!)
+//        }
         swipeRefreshLayout.setOnLoadmoreListener {
             isRefresh = false
             presenter!!.categoriesTagList(path.toString(), this!!.map!!)

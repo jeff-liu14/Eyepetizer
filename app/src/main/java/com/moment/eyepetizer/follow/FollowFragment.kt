@@ -44,6 +44,10 @@ class FollowFragment : BaseFragment(), FollowContract.FollowView {
         swipeRefreshLayout.isEnableAutoLoadmore = true
         swipeRefreshLayout.setOnRefreshListener {
             isRefresh = true
+            start_num = 0
+            num = 10
+            follow = false
+            startId = 0
             initData()
         }
 
