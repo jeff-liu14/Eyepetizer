@@ -34,8 +34,7 @@
                 <ImageView
                     android:id="@+id/iv_bg"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/default_banner" />
+                    android:layout_height="wrap_content" />
 
                 <ImageView
                     android:id="@+id/iv_back"
@@ -58,7 +57,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="title"
                         android:textColor="@color/white"
                         android:textSize="24sp" />
 
@@ -68,7 +66,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center_horizontal"
-                        android:text="title"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -78,10 +75,21 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:gravity="top"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/btn_back"
-                app:titleMarginTop="15dp" />
+                app:navigationIcon="@drawable/ic_action_back_white"
+                app:titleMarginTop="15dp">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:text="文字居中"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+            </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
 
 

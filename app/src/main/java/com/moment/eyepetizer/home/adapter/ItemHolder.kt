@@ -16,7 +16,10 @@ import kotlinx.android.synthetic.main.followcard_item.view.*
 import kotlinx.android.synthetic.main.horizontal_scrollcard_item.view.*
 import kotlinx.android.synthetic.main.squarecard_collection_item.view.*
 import kotlinx.android.synthetic.main.text_card_item.view.*
+import kotlinx.android.synthetic.main.text_footer_item.view.*
+import kotlinx.android.synthetic.main.text_header_item.view.*
 import kotlinx.android.synthetic.main.video_smallcard_item.view.*
+import kotlinx.android.synthetic.main.videocollection_ofhoriscroll_item.view.*
 import kotlinx.android.synthetic.main.videocollection_withbrief_item.view.*
 
 /**
@@ -65,6 +68,18 @@ fun createMyViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHo
             val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.followcard_item, viewGroup, false)
             return ItemVideoItemHolder(view)
         }
+        MyMultiTypeAdapter.ITEM_TYPE.ITEM_VIDEOCOLLECTION_OFHORISCROLLCARD.type.hashCode() -> {
+            val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.videocollection_ofhoriscroll_item, viewGroup, false)
+            return ItemVideoCollectionOfHolder(view)
+        }
+        MyMultiTypeAdapter.ITEM_TYPE.ITEM_TEXTHEADER.type.hashCode() -> {
+            val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.text_header_item, viewGroup, false)
+            return ItemTextHeaderItemHolder(view)
+        }
+        MyMultiTypeAdapter.ITEM_TYPE.ITEM_TEXTFOOTER.type.hashCode() -> {
+            val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.text_footer_item, viewGroup, false)
+            return ItemTextFooterItemHolder(view)
+        }
         else -> {
             var view = LayoutInflater.from(viewGroup.context).inflate(R.layout.text_card_item, viewGroup, false)
             view.visibility = View.GONE
@@ -81,6 +96,16 @@ class ItemTextCardItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     var iv_more_header: ImageView? = itemView.iv_more_header
     var iv_more: ImageView? = itemView.iv_more
 }
+
+class ItemTextHeaderItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var tv_title: TextView? = itemView.tv_text_header_title
+}
+
+class ItemTextFooterItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var tv_text_footer: TextView? = itemView.tv_text_footer
+    var iv_footer_more: ImageView? = itemView.iv_footer_more
+}
+
 
 class ItemBriefCardItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var image: ImageView? = itemView.image
@@ -142,6 +167,12 @@ class ItemVideoItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var iv_icon: ImageView? = itemView.iv_followcard_icon
     var tv_title: TextView? = itemView.tv_followcard_title
     var tv_content: TextView? = itemView.tv_followcard_content
+}
+
+class ItemVideoCollectionOfHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var tv_videocollection_of_title: TextView? = itemView.tv_videocollection_of_title
+    var iv_videocollection_of_header: ImageView? = itemView.iv_videocollection_of_header
+    var recyclerview_videocollection_of: RecyclerView? = itemView.recyclerview_videocollection_of
 }
 
 class ItemEmptyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

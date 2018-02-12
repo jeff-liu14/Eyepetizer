@@ -45,8 +45,6 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
         CategoriesDetailPresenter(this)
     }
 
-    var verticalOffsetLast: Int = 0
-
     override fun initView() {
         val bundle = intent.extras
         if (bundle != null) {
@@ -59,16 +57,16 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
                         State.EXPANDED -> {
 
                             //展开状态
-                            toolbar.setNavigationIcon(R.drawable.btn_back)
-                            toolbar.setTitleTextColor(Color.WHITE)
+                            toolbar.setNavigationIcon(R.drawable.ic_action_back_white)
+                            tv_title.setTextColor(Color.WHITE)
+                            tv_title.text = ""
                         }
                         State.COLLAPSED -> {
 
                             //折叠状态
-                            var drawable = resources.getDrawable(R.drawable.btn_back)
-//                            DrawableCompat.setTintList(drawable, ColorStateList.valueOf(Color.BLACK))
-                            toolbar.setNavigationIcon(drawable)
-                            toolbar.setTitleTextColor(Color.BLACK)
+                            toolbar.setNavigationIcon(R.drawable.ic_action_back)
+                            tv_title.setTextColor(Color.BLACK)
+                            tv_title.text = title
 
                         }
                         else -> {
@@ -79,6 +77,9 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
                     }
 
         })
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun onBackPressed() = finish()
@@ -102,7 +103,7 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
 
 
         title = categoryInfo.name.toString()
-        toolbar.title = title
+        toolbar.title = ""
 
         tv_name.text = categoryInfo.name.toString()
         tv_description.text = categoryInfo.description.toString()

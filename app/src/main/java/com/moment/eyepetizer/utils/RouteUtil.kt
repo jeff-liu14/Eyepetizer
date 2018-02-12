@@ -28,7 +28,6 @@ fun parseUri(context: Context, url: String) {
         }
         "category" -> {
             val path = uri.pathSegments[0]
-            Toast.makeText(context, path.toString() + "", Toast.LENGTH_SHORT).show()
             var intent = Intent(context, CategoriesTagListActivity::class.java)
             var bundle = Bundle()
             bundle.putInt("id", path.toInt())

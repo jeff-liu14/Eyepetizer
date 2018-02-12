@@ -28,6 +28,9 @@ fun bindViewHolder(mContext: Context, datas: ArrayList<Result.ItemList>, viewHol
         is ItemVideoCollectionWithBriefHolder -> onItemVideoCollectionWithBriefBinder(mContext, datas, viewHolder, position)
         is ItemBannerHolder -> onItemBannerBind(mContext, datas, viewHolder, position)
         is ItemVideoItemHolder -> onItemVideoBind(mContext, datas, viewHolder, position)
+        is ItemVideoCollectionOfHolder -> onItemVideoCollectionOfBind(mContext, datas, viewHolder, position)
+        is ItemTextHeaderItemHolder -> onItemTextHeaderBind(mContext, datas, viewHolder, position)
+        is ItemTextFooterItemHolder -> onItemTextFooterBind(mContext, datas, viewHolder, position)
     }
 }
 
@@ -59,6 +62,26 @@ fun onItemTextCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, vie
 
 }
 
+fun onItemTextHeaderBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHolder: RecyclerView.ViewHolder, position: Int) {
+    var data: Result.ItemList = datas[position]
+    var holder: ItemTextHeaderItemHolder = viewHolder as ItemTextHeaderItemHolder
+    var txtCard: Map<String, Object> = data.data as Map<String, Object>
+    holder.tv_title!!.text = txtCard["text"].toString()
+}
+
+fun onItemTextFooterBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHolder: RecyclerView.ViewHolder, position: Int) {
+    var data: Result.ItemList = datas[position]
+    var holder: ItemTextFooterItemHolder = viewHolder as ItemTextFooterItemHolder
+    var txtCard: Map<String, Object> = data.data as Map<String, Object>
+    holder.tv_text_footer!!.text = txtCard["text"].toString()
+    var actionUrl = txtCard["actionUrl"]
+    if (actionUrl == null || TextUtils.isEmpty(actionUrl.toString())) {
+        holder.iv_footer_more!!.visibility = View.GONE
+    } else {
+        holder.iv_footer_more!!.visibility = View.VISIBLE
+    }
+}
+
 fun onItemBriefCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHolder: RecyclerView.ViewHolder, position: Int) {
     var data: Result.ItemList = datas[position]
     var holder: ItemBriefCardItemHolder = viewHolder as ItemBriefCardItemHolder
@@ -68,8 +91,13 @@ fun onItemBriefCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, vi
     holder.rl_brief_root.setOnClickListener {
         parseUri(mContext, briefCard["actionUrl"].toString())
     }
+    var iconType = briefCard["iconType"].toString()
+    when (iconType) {
+        "square" -> ImageLoad().load(WeakReference(mContext), briefCard["icon"].toString(), holder.image, 5)
+        "round" -> ImageLoad().loadCircle(WeakReference(mContext), briefCard["icon"].toString(), holder.image)
+        else -> ImageLoad().load(WeakReference(mContext), briefCard["icon"].toString(), holder.image)
+    }
 
-    ImageLoad().loadCircle(WeakReference(mContext), briefCard["icon"].toString(), holder.image)
 }
 
 fun onItemDynamicInfoCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHolder: RecyclerView.ViewHolder, position: Int) {
@@ -105,10 +133,9 @@ fun onItemHorizontalScrollCardBind(mContext: Context, datas: ArrayList<Result.It
     var horizontalScrollCard: Map<String, Object> = data.data as Map<String, Object>
     var itemList: List<Map<String, Object>> = horizontalScrollCard.get("itemList") as List<Map<String, Object>>
     var urlList: MutableList<String>? = ArrayList<String>()
-    for (map in itemList) {
-        var data: Map<String, Object> = map.get("data") as Map<String, Object>
-        urlList!!.add(data.get("image").toString())
-    }
+    itemList
+            .map { it["data"] as Map<String, Object> }
+            .forEach { urlList!!.add(it["image"].toString()) }
 
     var linearLayout: RecyclerView.LayoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
     holder.recyclerview!!.layoutManager = linearLayout
@@ -134,7 +161,13 @@ fun onItemFollowCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, v
     var holder: ItemFollowCardItemHolder = viewHolder as ItemFollowCardItemHolder
     var followCard: Map<String, Object> = data.data as Map<String, Object>
     var header: Map<String, Object> = followCard["header"] as Map<String, Object>
-    ImageLoad().loadCircle(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
+    var iconType = header["iconType"].toString()
+
+    when (iconType) {
+        "square" -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon, 5)
+        "round" -> ImageLoad().loadCircle(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
+        else -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
+    }
 
     var list = TextUtils.split(header["description"].toString(), "/")
     holder.tv_content!!.text = header["title"].toString() + " / " + list[0]
@@ -210,7 +243,13 @@ fun onItemVideoCollectionWithBriefBinder(mContext: Context, datas: ArrayList<Res
 
     var header: Map<String, Object> = videoCollectionWithBrief["header"] as Map<String, Object>
     holder.tv_nickname!!.text = header["title"].toString()
-    ImageLoad().loadCircle(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
+
+    var iconType = header["iconType"].toString()
+    when (iconType) {
+        "square" -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon, 5)
+        "round" -> ImageLoad().loadCircle(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
+        else -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
+    }
     holder.tv_des!!.text = header["description"].toString()
 
     var itemList: List<Map<String, Object>> = videoCollectionWithBrief["itemList"] as List<Map<String, Object>>
@@ -270,4 +309,42 @@ fun onItemVideoBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHo
 
     holder.tv_title!!.text = video["title"].toString()
 
+}
+
+fun onItemVideoCollectionOfBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHolder: RecyclerView.ViewHolder, position: Int) {
+    var data: Result.ItemList = datas[position]
+    var holder: ItemVideoCollectionOfHolder = viewHolder as ItemVideoCollectionOfHolder
+    var videoCollectionOfHorizontalScrollCard: Map<String, Object> = data.data as Map<String, Object>
+
+    var header: Map<String, Object> = videoCollectionOfHorizontalScrollCard["header"] as Map<String, Object>
+    holder.tv_videocollection_of_title!!.text = header["title"].toString()
+    var actionUrl = header["actionUrl"]
+
+    if (actionUrl == null || TextUtils.isEmpty(actionUrl.toString())) {
+        holder.iv_videocollection_of_header!!.visibility = View.GONE
+    } else {
+        holder.iv_videocollection_of_header!!.visibility = View.VISIBLE
+    }
+
+    var itemList: List<Map<String, Object>> = videoCollectionOfHorizontalScrollCard["itemList"] as List<Map<String, Object>>
+    var urlList: MutableList<VideoCollectionAdapter.VideoCollection>? = ArrayList<VideoCollectionAdapter.VideoCollection>()
+    for (map in itemList) {
+        var data: Map<String, Object> = map["data"] as Map<String, Object>
+        var cover: Map<String, Object> = data["cover"] as Map<String, Object>
+        var video: VideoCollectionAdapter.VideoCollection = VideoCollectionAdapter.VideoCollection()
+        video.icon = cover["feed"].toString()
+        video.title = data["title"].toString()
+        video.category = data["category"].toString()
+        video.duration = data["duration"].toString().toFloat().toInt().toLong()
+        urlList!!.add(video)
+    }
+
+    var linearLayout: RecyclerView.LayoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+    holder.recyclerview_videocollection_of!!.layoutManager = linearLayout
+    var snapHelper: SnapHelper = GravitySnapHelper(Gravity.START)
+    snapHelper.attachToRecyclerView(holder.recyclerview_videocollection_of)
+
+
+    var adapter = VideoCollectionAdapter(mContext, urlList!!.toList())
+    holder.recyclerview_videocollection_of!!.adapter = adapter
 }

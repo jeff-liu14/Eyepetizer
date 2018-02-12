@@ -37,7 +37,7 @@ class CategoryTabListFragment(id: String, path: String) : BaseFragment(), Catego
     override fun initView() {
 
         Log.e("Fragment", "CategoryFragment initView()")
-        swipeRefreshLayout.isEnableAutoLoadmore = true
+        swipeRefreshLayout.isEnableRefresh = false
         swipeRefreshLayout.refreshHeader = ClassicsHeader(activity) as RefreshHeader?
         swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
 
@@ -118,8 +118,10 @@ class CategoryTabListFragment(id: String, path: String) : BaseFragment(), Catego
     }
 
     override fun onCategoriesTagFail(error: Throwable) {
-        swipeRefreshLayout.isLoadmoreFinished = false
-        swipeRefreshLayout.finishLoadmore()
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.isLoadmoreFinished = false
+            swipeRefreshLayout.finishLoadmore()
+        }
     }
 
 

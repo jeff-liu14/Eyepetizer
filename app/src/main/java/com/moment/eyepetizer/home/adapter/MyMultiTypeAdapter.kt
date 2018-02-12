@@ -27,7 +27,10 @@ class MyMultiTypeAdapter(datas: ArrayList<Result.ItemList>, var context: Context
         ITEM_SQUARECARD_COLLECTION("squareCardCollection"),
         ITEM_VIDEOCOLLECTION_WITHBRIEF("videoCollectionWithBrief"),
         ITEM_BANNER("banner"),
-        ITEM_VIDEO("video")
+        ITEM_VIDEO("video"),
+        ITEM_VIDEOCOLLECTION_OFHORISCROLLCARD("videoCollectionOfHorizontalScrollCard"),
+        ITEM_TEXTHEADER("textHeader"),
+        ITEM_TEXTFOOTER("textFooter")
     }
 
 
@@ -50,7 +53,7 @@ class MyMultiTypeAdapter(datas: ArrayList<Result.ItemList>, var context: Context
             bindViewHolder(mContext, datas, viewHolder, position)
 
     override fun getItemViewType(position: Int): Int = getMultiType(position, datas)
-    
+
     //获取数据的数量
     override fun getItemCount(): Int = datas.size
 
