@@ -27,7 +27,7 @@ class Result {
          * videoSmallCard、squareCardCollection、videoCollectionWithBrief、DynamicInfoCard、
          * banner
          */
-        var data: Object? = null
+        var data: Any? = null
 
         override fun toString(): String {
             return "ItemList(type=$type, tag=$tag, id=$id, adIndex=$adIndex, data=$data)"

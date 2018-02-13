@@ -43,6 +43,8 @@ class CategoryFragment(id: String) : BaseFragment(), CategoryContract.CategoryVi
                             swipeRefreshLayout.autoRefresh(0)
                         } else {
                             if (adapter != null && adapter!!.itemCount == 0) {
+                                start_num = 0
+                                num = 10
                                 presenter!!.category(category_id.toInt(), start_num, num)
                             }
                         }
