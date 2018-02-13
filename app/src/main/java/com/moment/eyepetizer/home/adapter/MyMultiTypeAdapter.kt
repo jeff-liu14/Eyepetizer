@@ -27,6 +27,7 @@ class MyMultiTypeAdapter(datas: ArrayList<Result.ItemList>, var context: Context
         ITEM_SQUARECARD_COLLECTION("squareCardCollection"),
         ITEM_VIDEOCOLLECTION_WITHBRIEF("videoCollectionWithBrief"),
         ITEM_BANNER("banner"),
+        ITEM_BANNER2("banner2"),
         ITEM_VIDEO("video"),
         ITEM_VIDEOCOLLECTION_OFHORISCROLLCARD("videoCollectionOfHorizontalScrollCard"),
         ITEM_TEXTHEADER("textHeader"),

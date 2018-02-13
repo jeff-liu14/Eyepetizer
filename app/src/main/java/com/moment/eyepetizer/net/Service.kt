@@ -1,8 +1,6 @@
 package com.moment.eyepetizer.net
 
-import com.moment.eyepetizer.net.entity.Categories
-import com.moment.eyepetizer.net.entity.CategoryInfo
-import com.moment.eyepetizer.net.entity.Result
+import com.moment.eyepetizer.net.entity.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -64,12 +62,31 @@ interface Service {
                           @QueryMap map: HashMap<String, String>): Observable<Result>
 
 
-    //POST
-//    @FormUrlEncoded
-//    @POST("api/v5/index/tab/discovery")
-//    fun dd(@Field("category_id") category_id: String,
-//           @Field("page") page: String,
-//           @Field("size") size: String): Observable<String>
+    //全部分类
+    @GET("/api/v4/categories/all")
+    fun categoriesAll(): Observable<Result>
 
+    //本周排行
+    @GET("/api/v4/rankList")
+    fun rankList(): Observable<RankList>
+
+    //本周排行详情
+    @GET
+    fun rankListVideo(@Url path: String,
+                      @QueryMap map: HashMap<String, String>): Observable<Result>
+
+    //专题
+    @GET("/api/v3/specialTopics")
+    fun specialTopics(@Query("start") start: Int,
+                      @Query("num") num: Int): Observable<Result>
+
+    //360全景视频
+    @GET("/api/v1/tag/index")
+    fun tagIndex(@Query("id") id: Int): Observable<TagIndex>
+
+    //近期话题
+    @GET
+    fun getDiscussList(@Url path: String,
+                       @QueryMap map: HashMap<String, String>): Observable<Result>
 
 }

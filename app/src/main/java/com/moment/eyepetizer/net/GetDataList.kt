@@ -1,8 +1,6 @@
 package com.moment.eyepetizer.net
 
-import com.moment.eyepetizer.net.entity.Categories
-import com.moment.eyepetizer.net.entity.CategoryInfo
-import com.moment.eyepetizer.net.entity.Result
+import com.moment.eyepetizer.net.entity.*
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -94,4 +92,53 @@ object GetDataList {
             .subscribe({ result -> callBack.onNext(result) },
                     { throwable: Throwable -> callBack.onError(throwable) },
                     { callBack.onCompleted() })
+
+    fun categoriesAll(callBack: CallBack<Result>): Disposable = RetrofitUtils().with().build()
+            .categoriesAll()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> callBack.onNext(result) },
+                    { throwable: Throwable -> callBack.onError(throwable) },
+                    { callBack.onCompleted() })
+
+    fun rankList(callBack: CallBack<RankList>): Disposable = RetrofitUtils().with().build()
+            .rankList()
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> callBack.onNext(result) },
+                    { throwable: Throwable -> callBack.onError(throwable) },
+                    { callBack.onCompleted() })
+
+    fun rankListVideo(path: String, map: HashMap<String, String>, callBack: CallBack<Result>): Disposable = RetrofitUtils().with().build()
+            .rankListVideo(path, map)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> callBack.onNext(result) },
+                    { throwable: Throwable -> callBack.onError(throwable) },
+                    { callBack.onCompleted() })
+
+    fun specialTopics(start: Int, num: Int, callBack: CallBack<Result>): Disposable = RetrofitUtils().with().build()
+            .specialTopics(start, num)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> callBack.onNext(result) },
+                    { throwable: Throwable -> callBack.onError(throwable) },
+                    { callBack.onCompleted() })
+
+    fun tagIndex(id: Int, callBack: CallBack<TagIndex>): Disposable = RetrofitUtils().with().build()
+            .tagIndex(id)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> callBack.onNext(result) },
+                    { throwable: Throwable -> callBack.onError(throwable) },
+                    { callBack.onCompleted() })
+
+    fun getDiscussList(path: String, map: HashMap<String, String>, callBack: CallBack<Result>): Disposable = RetrofitUtils().with().build()
+            .getDiscussList(path, map)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> callBack.onNext(result) },
+                    { throwable: Throwable -> callBack.onError(throwable) },
+                    { callBack.onCompleted() })
 }
+

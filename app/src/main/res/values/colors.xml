@@ -11,6 +11,8 @@
     <color name="textbg">#8F9AA8</color>
     <color name="eee">#eeeeee</color>
 
+    <color name="square_item">#62000000</color>
+
     <color name="card_background">#ffffff</color>
     <color name="card_shadow">#10000000</color>
     <color name="lite_blue">#ff359ff2</color>

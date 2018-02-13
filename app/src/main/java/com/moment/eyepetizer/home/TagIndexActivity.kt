@@ -7,17 +7,16 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
-import android.util.Log
 import com.moment.eyepetizer.R
 import com.moment.eyepetizer.base.BaseActivity
-import com.moment.eyepetizer.home.mvp.CategoriesDetailContract
-import com.moment.eyepetizer.home.mvp.CategoriesDetailPresenter
-import com.moment.eyepetizer.net.entity.CategoryInfo
+import com.moment.eyepetizer.home.mvp.TagIndexContract
+import com.moment.eyepetizer.home.mvp.TagIndexPresenter
+import com.moment.eyepetizer.net.entity.TagIndex
 import com.moment.eyepetizer.utils.AppBarStateChangeListener
 import com.moment.eyepetizer.utils.ImageLoad
 import com.moment.eyepetizer.utils.getScreenHeight
 import com.moment.eyepetizer.utils.getScreenWidth
-import kotlinx.android.synthetic.main.categories_taglist_activity.*
+import kotlinx.android.synthetic.main.tagindex_activity.*
 import java.io.File
 import java.lang.ref.WeakReference
 
@@ -25,20 +24,19 @@ import java.lang.ref.WeakReference
  * Created by moment on 2018/2/11.
  */
 
-class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.CategoriesDetailView {
+class TagIndexActivity : BaseActivity(), TagIndexContract.TagIndexView {
     private var mFragments = ArrayList<Fragment>()
     private var mTitles: ArrayList<HomeFragment.CategoryListEntity> = ArrayList()
     private var mTitle: ArrayList<String> = ArrayList()
     private var mAdapter: MyPagerAdapter? = null
-    private var presenter: CategoriesDetailContract.CategoriesDetailPresenter? = null
+    private var presenter: TagIndexContract.TagIndexPresenter? = null
     private var id: Int? = 0
     private var title: String? = null
-    private var tabIndex: Int = 0
 
-    override fun getLayoutId(): Int = R.layout.categories_taglist_activity
+    override fun getLayoutId(): Int = R.layout.tagindex_activity
 
     override fun initPresenter() {
-        CategoriesDetailPresenter(this)
+        TagIndexPresenter(this)
     }
 
     override fun initView() {
@@ -46,7 +44,6 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
         if (bundle != null) {
             id = bundle.getInt("id")
             title = bundle.getString("title")
-            tabIndex = bundle.getInt("tabIndex", 0)
         }
 
         appbarLayout.addOnOffsetChangedListener(object : AppBarStateChangeListener() {
@@ -85,27 +82,34 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
     override fun onBackPressed() = finish()
 
     override fun initData() {
-        presenter!!.categoriesDetail(this!!.id!!)
+        presenter!!.tagIndex(this!!.id!!)
     }
 
-    override fun setPresenter(presenter: CategoriesDetailContract.CategoriesDetailPresenter) {
+    override fun setPresenter(presenter: TagIndexContract.TagIndexPresenter) {
         this.presenter = presenter
     }
 
-    var tabInfo: CategoryInfo.TabInfo? = null
-    override fun onCategoriesDetailSucc(result: CategoryInfo) {
-        val list = result.tabInfo!!.tabList
-        tabInfo = result.tabInfo
-        var categoryInfo = result.categoryInfo as CategoryInfo.CategoryInfo
+    var tabInfo: TagIndex.TabInfo? = null
+
+    override fun onTagIndexSucc(tagIndex: TagIndex) {
+        val list = tagIndex.tabInfo!!.tabList
+        tabInfo = tagIndex.tabInfo
+        var tagInfo = tagIndex.tagInfo as TagIndex.TagInfo
         val width = getScreenWidth(applicationContext)
         val height = getScreenHeight(applicationContext) / 3
-        ImageLoad().load(WeakReference(this@CategoriesTagListActivity), categoryInfo.headerImage.toString(), iv_bg, width, height)
+        ImageLoad().load(WeakReference(this@TagIndexActivity), tagInfo.headerImage.toString(), iv_bg, width, height)
 
 
         toolbar.title = ""
 
-        tv_name.text = categoryInfo.name.toString()
-        tv_description.text = categoryInfo.description.toString()
+        tv_name.text = tagInfo.name.toString()
+        var lp = ll_tag_index.layoutParams
+        lp.width = width
+        lp.height = height
+        ll_tag_index.layoutParams = lp
+
+        tv_description.text = "" + tagIndex.tagInfo!!.tagVideoCount + "作品 / " + tagIndex.tagInfo!!.tagFollowCount + "关注者 / " + tagIndex.tagInfo!!.tagDynamicCount + "动态"
+
 
         for (tab in list!!) {
             var category = HomeFragment.CategoryListEntity()
@@ -125,15 +129,9 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
         tab_layout.setViewPager(viewpager, stringArray)
         viewpager.offscreenPageLimit = list.size
         viewpager.currentItem = 0
-
-        if (tabIndex < tab_layout.tabCount) {
-            tab_layout.setCurrentTab(tabIndex, true)
-        }
     }
 
-    override fun onCategoriesDetailFail(error: Throwable) {
-        Log.d("error", error.localizedMessage)
-    }
+    override fun onTagIndexFail(throwable: Throwable) = Unit
 
     private inner class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
@@ -143,12 +141,12 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
 
         override fun getItem(position: Int): Fragment {
             val list = tabInfo!!.tabList
-            val tab = list!![position] as CategoryInfo.TabList
+            val tab = list!![position]
             var uri = Uri.parse(tab.apiUrl)
             var path: String = uri.path.toString().replace("/", File.separator)
 
             var id = uri.getQueryParameter("id")
-            return CategoryTagListFragment(id, path)
+            return TagIndexFragment(id, path)
         }
 
         override fun getItemPosition(`object`: Any?): Int = PagerAdapter.POSITION_NONE

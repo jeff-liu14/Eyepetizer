@@ -69,6 +69,26 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".home.CategoriesTagListActivity"
+            android:launchMode="standard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.CategoriesAllActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.RankListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.SpecialTopicsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.TagIndexActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.DiscussListActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
     </application>

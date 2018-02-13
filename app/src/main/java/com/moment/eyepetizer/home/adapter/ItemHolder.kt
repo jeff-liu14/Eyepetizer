@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.moment.eyepetizer.R
+import kotlinx.android.synthetic.main.banner2_item.view.*
 import kotlinx.android.synthetic.main.banner_item.view.*
 import kotlinx.android.synthetic.main.brief_card_item.view.*
 import kotlinx.android.synthetic.main.dynamic_infocard_item.view.*
@@ -64,6 +65,10 @@ fun createMyViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHo
             val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.banner_item, viewGroup, false)
             return ItemBannerHolder(view)
         }
+        MyMultiTypeAdapter.ITEM_TYPE.ITEM_BANNER2.type.hashCode() -> {
+            val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.banner2_item, viewGroup, false)
+            return ItemBanner2Holder(view)
+        }
         MyMultiTypeAdapter.ITEM_TYPE.ITEM_VIDEO.type.hashCode() -> {
             val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.followcard_item, viewGroup, false)
             return ItemVideoItemHolder(view)
@@ -99,6 +104,7 @@ class ItemTextCardItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 class ItemTextHeaderItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var tv_title: TextView? = itemView.tv_text_header_title
+    var iv_text_header_more: ImageView? = itemView.iv_text_header_more
 }
 
 class ItemTextFooterItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -148,6 +154,8 @@ class ItemVideoSmallCardHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
 class ItemSquareCardCollectionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var recyclerview: RecyclerView? = itemView.recyclerview_squarecard_collection
     var tv_title: TextView? = itemView.tv_squarecard_collection_title
+    var iv_squarecard_more: ImageView? = itemView.iv_squarecard_more
+    var tv_squarecard_collection_sub_title: TextView? = itemView.tv_squarecard_collection_sub_title
 }
 
 class ItemVideoCollectionWithBriefHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -159,6 +167,11 @@ class ItemVideoCollectionWithBriefHolder(itemView: View) : RecyclerView.ViewHold
 
 class ItemBannerHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var iv_banner: ImageView? = itemView.iv_banner
+}
+
+class ItemBanner2Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var iv_banner: ImageView? = itemView.iv_banner2
+    var tv_banner2: TextView? = itemView.tv_banner2
 }
 
 class ItemVideoItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

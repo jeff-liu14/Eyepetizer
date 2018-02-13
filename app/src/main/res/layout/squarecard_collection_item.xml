@@ -6,6 +6,16 @@
     android:layout_marginTop="15dp"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_squarecard_collection_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,6 +32,7 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/iv_squarecard_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"

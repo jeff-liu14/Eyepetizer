@@ -14,6 +14,7 @@ import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.view.ViewGroup
 import com.moment.eyepetizer.event.RxBus
+import com.moment.eyepetizer.event.entity.ChangeTabEvent
 import com.moment.eyepetizer.event.entity.CurrentTagEvent
 import com.moment.eyepetizer.event.entity.RefreshEvent
 import com.moment.eyepetizer.home.mvp.CategoriesContract
@@ -22,6 +23,8 @@ import com.moment.eyepetizer.net.entity.Categories
 import com.moment.eyepetizer.search.SearchActivity
 import com.moment.eyepetizer.utils.ImageLoad
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Action
+import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.*
 import java.lang.ref.WeakReference
@@ -57,6 +60,13 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { Toast.makeText(activity, "refresh", Toast.LENGTH_SHORT).show() }
+
+        RxBus.default!!.toObservable(ChangeTabEvent::class.java)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result -> tab_layout.setCurrentTab(result.tagIndex, true) })
+
+
     }
 
     override fun initPresenter() {

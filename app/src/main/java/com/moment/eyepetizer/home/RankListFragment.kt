@@ -10,11 +10,11 @@ import com.moment.eyepetizer.net.entity.Result
 import com.moment.eyepetizer.utils.UriUtils
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
-import kotlinx.android.synthetic.main.category_taglist_fragment.*
+import kotlinx.android.synthetic.main.ranklist_fragment.*
 import com.bumptech.glide.Glide
 import com.moment.eyepetizer.home.adapter.MyMultiTypeAdapter
-import com.moment.eyepetizer.home.mvp.CategoryTabListContract
-import com.moment.eyepetizer.home.mvp.CategoryTabListPresenter
+import com.moment.eyepetizer.home.mvp.RankListDetailContract
+import com.moment.eyepetizer.home.mvp.RankListDetailPresenter
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import kotlinx.android.synthetic.*
 
@@ -23,16 +23,13 @@ import kotlinx.android.synthetic.*
  * Created by moment on 2018/2/2.
  */
 
-class CategoryTabListFragment(id: String, path: String) : BaseFragment(), CategoryTabListContract.CategoriesTagListView {
-
-
-    private var presenter: CategoryTabListContract.CategoriesTagListPresenter? = null
+class RankListFragment(path: String, map: HashMap<String, String>?) : BaseFragment(), RankListDetailContract.RankListView {
+    private var presenter: RankListDetailContract.RankListPresenter? = null
     var adapter: MyMultiTypeAdapter? = null
     private var isRefresh: Boolean = false
-    private var category_id = id
     private var path: String? = path
-    private var map: HashMap<String, String>? = HashMap()
-    override fun getLayoutId(): Int = R.layout.category_taglist_fragment
+    private var map: HashMap<String, String>? = map
+    override fun getLayoutId(): Int = R.layout.ranklist_fragment
 
     override fun initView() {
 
@@ -42,15 +39,9 @@ class CategoryTabListFragment(id: String, path: String) : BaseFragment(), Catego
         swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
 
         swipeRefreshLayout.isEnableRefresh = false
-//        swipeRefreshLayout.setOnRefreshListener {
-//            isRefresh = true
-//            map!!.clear()
-//            map!!.put("id", category_id)
-//            presenter!!.categoriesTagList(path.toString(), map!!)
-//        }
         swipeRefreshLayout.setOnLoadmoreListener {
             isRefresh = false
-            presenter!!.categoriesTagList(path.toString(), this!!.map!!)
+            presenter!!.rankListVideo(path.toString(), this!!.map!!)
         }
 
         recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -84,19 +75,18 @@ class CategoryTabListFragment(id: String, path: String) : BaseFragment(), Catego
     }
 
     override fun initPresenter() {
-        CategoryTabListPresenter(this)
+        RankListDetailPresenter(this)
     }
 
     override fun initData() {
-        map!!.put("id", category_id)
-        presenter!!.categoriesTagList(this!!.path!!, map!!)
+        presenter!!.rankListVideo(this!!.path!!, map!!)
     }
 
-    override fun setPresenter(presenter: CategoryTabListContract.CategoriesTagListPresenter) {
+    override fun setPresenter(presenter: RankListDetailContract.RankListPresenter) {
         this.presenter = presenter
     }
 
-    override fun onCategoriesTagSucc(t: Result) {
+    override fun onRankListSucc(t: Result) {
         swipeRefreshLayout.finishLoadmore()
         swipeRefreshLayout.finishRefresh()
         swipeRefreshLayout.isLoadmoreFinished = TextUtils.isEmpty(t.nextPageUrl)
@@ -118,13 +108,12 @@ class CategoryTabListFragment(id: String, path: String) : BaseFragment(), Catego
         }
     }
 
-    override fun onCategoriesTagFail(error: Throwable) {
+    override fun onRankListFail(error: Throwable) {
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.isLoadmoreFinished = false
             swipeRefreshLayout.finishLoadmore()
         }
     }
-
 
     override fun onDestroyView() {
         recyclerview!!.adapter = null
@@ -132,7 +121,6 @@ class CategoryTabListFragment(id: String, path: String) : BaseFragment(), Catego
         presenter = null
         recyclerview!!.addOnScrollListener(null)
         clearFindViewByIdCache()
-        Log.e("Fragment", "CategoryFragment onDestroy() " + category_id)
         super.onDestroyView()
     }
 }
