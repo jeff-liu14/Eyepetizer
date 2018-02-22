@@ -31,21 +31,21 @@
 
     </RelativeLayout>
 
-    <com.flyco.tablayout.SlidingTabLayout xmlns:tl="http://schemas.android.com/apk/res-auto"
+    <com.moment.eyepetizer.view.TabLayout xmlns:tl="http://schemas.android.com/apk/res-auto"
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/white"
-        tl:tl_divider_padding="2dp"
-        tl:tl_indicator_color="@color/black"
-        tl:tl_indicator_height="3dp"
-        tl:tl_indicator_width="8dp"
-        tl:tl_tab_padding="14dp"
-        tl:tl_tab_space_equal="true"
-        tl:tl_textBold="BOTH"
-        tl:tl_textSelectColor="@color/black"
-        tl:tl_textUnselectColor="@color/gray"
-        tl:tl_textsize="13sp" />
+        tl:indicatorColor="@color/black"
+        tl:indicatorHeight="3dp"
+        tl:indicatorSpacing="8dp"
+        tl:indicatorWidth="8dp"
+        tl:tabPadding="8dp"
+        tl:tabSpaceEqual="true"
+        tl:textNormalColor="@color/gray"
+        tl:textNormalSize="14sp"
+        tl:textSelectColor="@color/black"
+        tl:underLineHeight="0dp" />
 
     <View
         android:layout_width="match_parent"

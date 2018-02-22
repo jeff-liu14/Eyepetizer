@@ -8,11 +8,9 @@ import android.widget.Toast
 import com.moment.eyepetizer.R
 import com.moment.eyepetizer.base.BaseFragment
 import kotlinx.android.synthetic.main.home_fragment.*
-import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
-import android.view.ViewGroup
 import com.moment.eyepetizer.event.RxBus
 import com.moment.eyepetizer.event.entity.ChangeTabEvent
 import com.moment.eyepetizer.event.entity.CurrentTagEvent
@@ -23,8 +21,6 @@ import com.moment.eyepetizer.net.entity.Categories
 import com.moment.eyepetizer.search.SearchActivity
 import com.moment.eyepetizer.utils.ImageLoad
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Action
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.*
 import java.lang.ref.WeakReference
