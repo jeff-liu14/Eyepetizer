@@ -126,7 +126,7 @@ class TagIndexActivity : BaseActivity(), TagIndexContract.TagIndexView {
         mAdapter = MyPagerAdapter(supportFragmentManager)
         viewpager.adapter = mAdapter
         val stringArray = mTitle.toArray(arrayOfNulls<String>(0))
-        tab_layout.setViewPager(viewpager, stringArray)
+        tab_layout.setViewPager(viewpager, stringArray as Array<String>)
         viewpager.offscreenPageLimit = list.size
         viewpager.currentItem = 0
     }

@@ -115,7 +115,7 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
         mAdapter = MyPagerAdapter(fragmentManager)
         viewpager.adapter = mAdapter
         val stringArray = mTitle.toArray(arrayOfNulls<String>(0))
-        tab_layout.setViewPager(viewpager, stringArray)
+        tab_layout.setViewPager(viewpager, stringArray as Array<String>)
         viewpager.offscreenPageLimit = 3
         viewpager.currentItem = 0
         viewpager.addOnPageChangeListener(this)
