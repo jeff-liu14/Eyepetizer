@@ -15,6 +15,7 @@ import com.moment.eyepetizer.net.entity.Result
 import com.moment.eyepetizer.search.SearchActivity
 import com.moment.eyepetizer.utils.UriUtils
 import com.moment.eyepetizer.utils.unbindDrawables
+import com.scwang.smartrefresh.layout.api.RefreshFooter
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -39,7 +40,7 @@ class FollowFragment : BaseFragment(), FollowContract.FollowView {
 
     override fun initView() {
         swipeRefreshLayout.refreshHeader = ClassicsHeader(activity) as RefreshHeader?
-        swipeRefreshLayout.refreshFooter = ClassicsFooter(activity)
+        swipeRefreshLayout.refreshFooter = ClassicsFooter(activity) as RefreshFooter?
         tv_bar_title.typeface = Typeface.createFromAsset(activity.assets, "fonts/Lobster-1.4.otf")
         swipeRefreshLayout.isEnableAutoLoadmore = true
         swipeRefreshLayout.setOnRefreshListener {
