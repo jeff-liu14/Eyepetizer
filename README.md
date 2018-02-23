@@ -1,9 +1,12 @@
 # Eyepetizer
 
 仿开眼视频Android客户端，本项目主要用来练手Google-MVP已及kotlin的使用,相关技术文章后续会陆续发布到个人主页
-[简书](https://www.jianshu.com/u/e687a486a27c)
-[掘金](https://juejin.im/user/57102c3c71cfe40067537379/posts)
-[blog](http://liuzheng.space/#blog)
+
+[简书:https://www.jianshu.com/u/e687a486a27c](https://www.jianshu.com/u/e687a486a27c)
+
+[掘金:https://juejin.im/user/57102c3c71cfe40067537379/posts](https://juejin.im/user/57102c3c71cfe40067537379/posts)
+
+[blog:http://liuzheng.space/#blog](http://liuzheng.space/#blog)
 
 # 首页
 <img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/shouye-faxian.png?raw=true"/><img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/shouye-guanggao.png?raw=true"/><img width="200" height="400" src="https://github.com/momentslz/Eyepetizer/blob/master/img/shouye-tuijian.png?raw=true"/>
