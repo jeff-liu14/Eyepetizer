@@ -129,7 +129,7 @@ fun onItemBriefCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, vi
     }
     val iconType = briefCard["iconType"].toString()
     when (iconType) {
-        "square" -> ImageLoad().load(WeakReference(mContext), briefCard["icon"].toString(), holder.image, 5)
+        "square" -> ImageLoad().loadRound(WeakReference(mContext), briefCard["icon"].toString(), holder.image, 5)
         "round" -> ImageLoad().loadCircle(WeakReference(mContext), briefCard["icon"].toString(), holder.image)
         else -> ImageLoad().load(WeakReference(mContext), briefCard["icon"].toString(), holder.image)
     }
@@ -201,7 +201,7 @@ fun onItemFollowCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, v
     val iconType = header["iconType"].toString()
 
     when (iconType) {
-        "square" -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon, 5)
+        "square" -> ImageLoad().loadRound(WeakReference(mContext), header["icon"].toString(), holder.iv_icon, 5)
         "round" -> ImageLoad().loadCircle(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
         else -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
     }
@@ -347,7 +347,7 @@ fun onItemVideoCollectionWithBriefBinder(mContext: Context, datas: ArrayList<Res
 
     val iconType = header["iconType"].toString()
     when (iconType) {
-        "square" -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon, 5)
+        "square" -> ImageLoad().loadRound(WeakReference(mContext), header["icon"].toString(), holder.iv_icon, 5)
         "round" -> ImageLoad().loadCircle(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
         else -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
     }
@@ -442,7 +442,7 @@ fun onItemVideoBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHo
         holder.tv_content!!.text = author["name"].toString() + " / #" + video["category"]
     } else if (video["tags"] != null) {
         val tags = video["tags"] as List<Map<*, *>>
-        ImageLoad().load(WeakReference(mContext), tags[0]["headerImage"].toString(), holder.iv_icon, 5)
+        ImageLoad().loadRound(WeakReference(mContext), tags[0]["headerImage"].toString(), holder.iv_icon, 5)
         holder.tv_content!!.text = "#" + tags[0]["name"].toString() + "#"
     }
 

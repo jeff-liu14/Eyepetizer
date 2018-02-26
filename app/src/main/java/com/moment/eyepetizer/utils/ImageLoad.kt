@@ -109,7 +109,7 @@ class ImageLoad {
                 })
     }
 
-    open fun load(context: WeakReference<Context>, url: String, image: ImageView?, round: Int) {
+    open fun loadRound(context: WeakReference<Context>, url: String, image: ImageView?, round: Int) {
         if (image == null) return
         var requestOptions = RequestOptions().centerCrop()
                 .placeholder(R.drawable.default_banner)
