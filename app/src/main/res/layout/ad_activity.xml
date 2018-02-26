@@ -8,7 +8,6 @@
         android:id="@+id/bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ll_bottom"
         android:background="@drawable/landing_background" />
 
     <ImageView
@@ -23,7 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/black"
         android:gravity="center"
         android:orientation="vertical">
 

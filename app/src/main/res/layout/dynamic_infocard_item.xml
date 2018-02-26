@@ -61,14 +61,33 @@
             android:background="@drawable/bg_auto_shap"
             android:orientation="horizontal">
 
-            <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/iv_conver"
-                android:layout_width="120dp"
-                android:layout_height="80dp"
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="9dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="9dp" />
+                android:layout_marginTop="9dp">
+
+                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/iv_conver"
+                    android:layout_width="120dp"
+                    android:layout_height="80dp" />
+
+                <TextView
+                    android:id="@+id/tv_dynamic_time_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/btn_shap_time"
+                    android:text="02:28"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

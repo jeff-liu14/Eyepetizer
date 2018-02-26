@@ -89,4 +89,8 @@ interface Service {
     fun getDiscussList(@Url path: String,
                        @QueryMap map: HashMap<String, String>): Observable<Result>
 
+    //视频相关推荐
+    @GET("/api/v4/video/related")
+    fun related(@Query("id") id: Int): Observable<Result>
+
 }

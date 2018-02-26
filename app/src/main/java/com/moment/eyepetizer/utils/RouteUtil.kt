@@ -25,6 +25,18 @@ fun parseWebView(title: String, url: String): String {
     return builder.toString()
 }
 
+fun composeUri(path: String, map: HashMap<String, String>): String {
+    var builder = StringBuilder()
+    builder.append("eyepetizer://")
+    builder.append(path + "/?")
+    for (key in map.keys) {
+        builder.append(key + "=")
+        builder.append(map[key])
+        builder.append("&")
+    }
+    return builder.toString()
+}
+
 fun parseUri(context: Context, url: String) {
     var uri: Uri = Uri.parse(url)
     var path = uri.host
@@ -92,6 +104,17 @@ fun parseUri(context: Context, url: String) {
         "feed" -> {
             var tabIndex = uri.getQueryParameter("tabIndex").toInt()
             RxBus.default!!.post(ChangeTabEvent(tabIndex))
+        }
+
+        "video" -> {
+            var intent = Intent(context, TagIndexActivity::class.java)
+            var bundle = Bundle()
+            bundle.putInt("id", uri.getQueryParameter("id").toInt())
+            bundle.putString("title", uri.getQueryParameter("title"))
+            bundle.putString("description", uri.getQueryParameter("description"))
+            bundle.putString("bg", uri.getQueryParameter("bg"))
+            intent.putExtras(bundle)
+            context.startActivity(intent)
         }
         else -> {
             Toast.makeText(context, path, Toast.LENGTH_SHORT).show()

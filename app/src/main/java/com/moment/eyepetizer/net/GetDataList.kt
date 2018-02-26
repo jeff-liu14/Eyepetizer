@@ -140,5 +140,13 @@ object GetDataList {
             .subscribe({ result -> callBack.onNext(result) },
                     { throwable: Throwable -> callBack.onError(throwable) },
                     { callBack.onCompleted() })
+
+    fun related(id: Int, callBack: CallBack<Result>): Disposable = RetrofitUtils().with().build()
+            .related(id)
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> callBack.onNext(result) },
+                    { throwable: Throwable -> callBack.onError(throwable) },
+                    { callBack.onCompleted() })
 }
 

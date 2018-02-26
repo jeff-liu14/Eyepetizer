@@ -154,14 +154,15 @@ fun onItemDynamicInfoCardBind(mContext: Context, datas: ArrayList<Result.ItemLis
     holder.tv_title!!.text = simpleVideo["title"].toString()
     holder.tv_des!!.text = "#" + simpleVideo["category"].toString()
     val cover = simpleVideo["cover"] as Map<*, *>
+    holder.tv_dynamic_time_video!!.text = TimeUtils.secToTime(simpleVideo["duration"].toString().toFloat().toInt())
 
     val width = getScreenWidth(mContext) * 0.4
     val height = width * 0.6
     ImageLoad().load(WeakReference(mContext), cover["feed"].toString(), holder.iv_conver, width.toInt(), height.toInt(), 5)
 
     holder.iv_conver!!.setOnClickListener {
-        var title = simpleVideo["simpleVideo"].toString()
-
+        var title = simpleVideo["title"].toString()
+        var id = simpleVideo["id"]
     }
     val obj: Double = simpleVideo["releaseTime"].toString().toDouble()
     holder.tv_time!!.text = TimeUtils.getDiffTime(obj.toLong())
@@ -220,6 +221,7 @@ fun onItemFollowCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, v
         val title = datas["title"].toString()
         val webUrl = datas["webUrl"] as Map<*, *>
         val url = webUrl["raw"].toString()
+        var id = datas["id"]
         parseUri(mContext, parseWebView(title, url))
     }
     holder.tv_time!!.text = TimeUtils.secToTime(datas["duration"].toString().toFloat().toInt())
@@ -240,6 +242,7 @@ fun onItemVideoSmallCardBinder(mContext: Context, datas: ArrayList<Result.ItemLi
         val title = videoSmallCard["title"].toString()
         val webUrl = videoSmallCard["webUrl"] as Map<*, *>
         val url = webUrl["raw"].toString()
+        var id = videoSmallCard["id"]
         parseUri(mContext, parseWebView(title, url))
     }
     holder.tv_time!!.text = TimeUtils.secToTime(videoSmallCard["duration"].toString().toFloat().toInt())
@@ -455,6 +458,7 @@ fun onItemVideoBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHo
         val title = video["title"].toString()
         val webUrl = video["webUrl"] as Map<*, *>
         val url = webUrl["raw"].toString()
+        var id = video["id"]
         parseUri(mContext, parseWebView(title, url))
     }
     holder.tv_time!!.text = TimeUtils.secToTime(video["duration"].toString().toFloat().toInt())

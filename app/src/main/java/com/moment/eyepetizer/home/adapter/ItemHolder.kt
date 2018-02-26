@@ -130,6 +130,7 @@ class ItemDynamicInfoCardItemHolder(itemView: View) : RecyclerView.ViewHolder(it
     var tv_des: TextView? = itemView.tv_dynamic_des
     var tv_like: TextView? = itemView.tv_like
     var tv_time: TextView? = itemView.tv_dynamic_time
+    var tv_dynamic_time_video: TextView? = itemView.tv_dynamic_time_video
 }
 
 class ItemHorizontalScrollCardHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
