@@ -8,7 +8,7 @@ pack_debug_fun() {
 
 ### 预发布渠道
 pack_uat_fun() {
-    adb install app/build/outputs/apk/kaiyan-1.0.apk
+    adb install app/build/outputs/apk/release/kaiyan-1.0.apk
     adb shell am start -n  com.moment.eyepetizer/com.moment.eyepetizer.ad.AdActivity
 }
 
