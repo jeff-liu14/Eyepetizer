@@ -21,7 +21,7 @@ class DiscoveryPresenter(var discoveryView: DiscoveryContract.DiscoveryView) : D
     override fun discovery(): Disposable = GetDataList.discovery(object : CallBack<Result> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = discoveryView.onDiscoveryFail(e)
+        override fun onError(e: Throwable?) = discoveryView.onDiscoveryFail(e)
 
         override fun onNext(t: Result) = discoveryView.onDiscoverySucc(t)
 

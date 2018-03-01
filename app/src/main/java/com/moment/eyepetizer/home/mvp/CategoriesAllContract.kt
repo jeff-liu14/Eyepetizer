@@ -17,6 +17,6 @@ interface CategoriesAllContract {
 
     interface CategoriesAllView : BaseView<CategoriesAllContract.CategoriesAllPresenter> {
         fun onCategoriesAllSucc(result: Result)
-        fun onCategoriesAllFail(error: Throwable)
+        fun onCategoriesAllFail(error: Throwable?)
     }
 }

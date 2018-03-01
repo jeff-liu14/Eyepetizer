@@ -21,7 +21,7 @@ class CategoryPresenter(var categoryView: CategoryContract.CategoryView) : Categ
             GetDataList.category(id, start, num, object : CallBack<Result> {
                 override fun onCompleted() = Unit
 
-                override fun onError(e: Throwable) = categoryView.onCategoryFail(e)
+                override fun onError(e: Throwable?) = categoryView.onCategoryFail(e)
 
                 override fun onNext(t: Result) = categoryView.onCategorySucc(t)
 

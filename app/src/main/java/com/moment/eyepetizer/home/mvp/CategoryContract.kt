@@ -16,6 +16,6 @@ interface CategoryContract {
 
     interface CategoryView : BaseView<CategoryPresenter> {
         fun onCategorySucc(result: Result)
-        fun onCategoryFail(error: Throwable)
+        fun onCategoryFail(error: Throwable?)
     }
 }

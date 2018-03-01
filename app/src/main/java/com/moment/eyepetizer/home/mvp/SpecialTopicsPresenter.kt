@@ -21,7 +21,7 @@ class SpecialTopicsPresenter(var specialTopicsView: SpecialTopicsContract.Specia
             = GetDataList.specialTopics(start, num, object : CallBack<Result> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = specialTopicsView.onSpecialTopicsFail(e)
+        override fun onError(e: Throwable?) = specialTopicsView.onSpecialTopicsFail(e)
 
         override fun onNext(t: Result) = specialTopicsView.onSpecialTopicsSucc(t)
 

@@ -111,9 +111,11 @@ class CategoryFragment(id: String) : BaseFragment(), CategoryContract.CategoryVi
     }
 
     override fun onCategorySucc(t: Result) {
-        swipeRefreshLayout!!.finishLoadmore()
-        swipeRefreshLayout!!.finishRefresh()
-        swipeRefreshLayout!!.isLoadmoreFinished = TextUtils.isEmpty(t.nextPageUrl)
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout!!.finishLoadmore()
+            swipeRefreshLayout!!.finishRefresh()
+            swipeRefreshLayout!!.isLoadmoreFinished = TextUtils.isEmpty(t.nextPageUrl)
+        }
         if (!TextUtils.isEmpty(t.nextPageUrl)) {
             start_num = UriUtils().parseCategoryUri(t.nextPageUrl.toString()).start
             num = UriUtils().parseCategoryUri(t.nextPageUrl.toString()).num
@@ -133,10 +135,12 @@ class CategoryFragment(id: String) : BaseFragment(), CategoryContract.CategoryVi
         }
     }
 
-    override fun onCategoryFail(error: Throwable) {
-        swipeRefreshLayout!!.isLoadmoreFinished = false
-        swipeRefreshLayout!!.finishLoadmore()
-        swipeRefreshLayout!!.finishRefresh()
+    override fun onCategoryFail(error: Throwable?) {
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout!!.isLoadmoreFinished = false
+            swipeRefreshLayout!!.finishLoadmore()
+            swipeRefreshLayout!!.finishRefresh()
+        }
     }
 
     override fun onDestroyView() {

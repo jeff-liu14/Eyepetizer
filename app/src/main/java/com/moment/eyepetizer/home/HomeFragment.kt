@@ -121,8 +121,7 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
         viewpager.addOnPageChangeListener(this)
     }
 
-    override fun onCategoriesFail(error: Throwable) =
-            Toast.makeText(activity, error.message + "", Toast.LENGTH_SHORT).show()
+    override fun onCategoriesFail(error: Throwable?) = Unit
 
     private inner class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 

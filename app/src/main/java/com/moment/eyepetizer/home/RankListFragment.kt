@@ -108,7 +108,7 @@ class RankListFragment(path: String, map: HashMap<String, String>?) : BaseFragme
         }
     }
 
-    override fun onRankListFail(error: Throwable) {
+    override fun onRankListFail(error: Throwable?) {
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.isLoadmoreFinished = false
             swipeRefreshLayout.finishLoadmore()

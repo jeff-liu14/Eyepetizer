@@ -17,6 +17,6 @@ interface RankListContract {
 
     interface RankListView : BaseView<RankListPresenter> {
         fun onRankListSucc(result: RankList)
-        fun onRankListFail(error: Throwable)
+        fun onRankListFail(error: Throwable?)
     }
 }

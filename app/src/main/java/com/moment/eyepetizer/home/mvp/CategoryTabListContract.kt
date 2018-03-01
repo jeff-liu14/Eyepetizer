@@ -16,6 +16,6 @@ interface CategoryTabListContract {
 
     interface CategoriesTagListView : BaseView<CategoriesTagListPresenter> {
         fun onCategoriesTagSucc(result: Result)
-        fun onCategoriesTagFail(error: Throwable)
+        fun onCategoriesTagFail(error: Throwable?)
     }
 }

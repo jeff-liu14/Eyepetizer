@@ -20,7 +20,7 @@ class CategoriesPresenter(var categoriesView: CategoriesContract.CategoriesView)
     override fun categories(): Disposable = GetDataList.categories(object : CallBack<List<Categories>> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = categoriesView.onCategoriesFail(e)
+        override fun onError(e: Throwable?) = categoriesView.onCategoriesFail(e)
 
         override fun onNext(t: List<Categories>) = categoriesView.onCategoriesSucc(t)
 

@@ -17,6 +17,6 @@ interface TagIndexContract {
 
     interface TagIndexView : BaseView<TagIndexPresenter> {
         fun onTagIndexSucc(tagIndex: TagIndex)
-        fun onTagIndexFail(throwable: Throwable)
+        fun onTagIndexFail(throwable: Throwable?)
     }
 }

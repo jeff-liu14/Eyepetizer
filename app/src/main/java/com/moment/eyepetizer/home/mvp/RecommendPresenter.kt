@@ -19,7 +19,7 @@ class RecommendPresenter(var recommendView: RecommendContract.RecommendView) : R
     override fun allRec(page: Int): Disposable = GetDataList.allRec(page, object : CallBack<Result> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = recommendView.onRecommendFail(e)
+        override fun onError(e: Throwable?) = recommendView.onRecommendFail(e)
 
         override fun onNext(t: Result) = recommendView.onRecommendSucc(t)
 

@@ -105,7 +105,7 @@ class FeedFragment : BaseFragment(), FeedContract.FeedView {
         }
     }
 
-    override fun onFeedFail(error: Throwable) {
+    override fun onFeedFail(error: Throwable?) {
         swipeRefreshLayout.isLoadmoreFinished = false
         swipeRefreshLayout.finishLoadmore()
         swipeRefreshLayout.finishRefresh()

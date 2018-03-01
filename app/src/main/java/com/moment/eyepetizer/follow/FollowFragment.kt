@@ -127,7 +127,7 @@ class FollowFragment : BaseFragment(), FollowContract.FollowView {
         }
     }
 
-    override fun onError(error: Throwable) {
+    override fun onError(error: Throwable?) {
         swipeRefreshLayout.isLoadmoreFinished = false
         swipeRefreshLayout.finishLoadmore()
         swipeRefreshLayout.finishRefresh()

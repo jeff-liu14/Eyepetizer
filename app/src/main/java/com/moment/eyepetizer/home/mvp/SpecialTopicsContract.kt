@@ -17,6 +17,6 @@ interface SpecialTopicsContract {
 
     interface SpecialTopicsView : BaseView<SpecialTopicsPresenter> {
         fun onSpecialTopicsSucc(result: Result)
-        fun onSpecialTopicsFail(throwable: Throwable)
+        fun onSpecialTopicsFail(throwable: Throwable?)
     }
 }

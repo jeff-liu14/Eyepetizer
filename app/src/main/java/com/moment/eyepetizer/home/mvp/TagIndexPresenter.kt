@@ -20,7 +20,7 @@ class TagIndexPresenter(var tagIndexView: TagIndexContract.TagIndexView) : TagIn
     override fun tagIndex(id: Int): Disposable = GetDataList.tagIndex(id, object : CallBack<TagIndex> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = tagIndexView.onTagIndexFail(e)
+        override fun onError(e: Throwable?) = tagIndexView.onTagIndexFail(e)
 
         override fun onNext(t: TagIndex) = tagIndexView.onTagIndexSucc(t)
 

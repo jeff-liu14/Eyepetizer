@@ -76,7 +76,7 @@ class RankListActivity : BaseActivity(), RankListContract.RankListView {
         viewpager.currentItem = 0
     }
 
-    override fun onRankListFail(error: Throwable) = Unit
+    override fun onRankListFail(error: Throwable?) = Unit
 
     private inner class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 

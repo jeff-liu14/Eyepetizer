@@ -16,6 +16,6 @@ interface RecommendContract {
 
     interface RecommendView : BaseView<RecommendPresenter> {
         fun onRecommendSucc(result: Result)
-        fun onRecommendFail(error: Throwable)
+        fun onRecommendFail(error: Throwable?)
     }
 }

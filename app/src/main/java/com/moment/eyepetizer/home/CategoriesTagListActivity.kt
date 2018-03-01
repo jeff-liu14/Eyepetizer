@@ -19,7 +19,6 @@ import com.moment.eyepetizer.utils.getScreenHeight
 import com.moment.eyepetizer.utils.getScreenWidth
 import kotlinx.android.synthetic.main.categories_taglist_activity.*
 import java.io.File
-import java.lang.ref.WeakReference
 
 /**
  * Created by moment on 2018/2/11.
@@ -99,7 +98,7 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
         var categoryInfo = result.categoryInfo as CategoryInfo.CategoryInfo
         val width = getScreenWidth(applicationContext)
         val height = getScreenHeight(applicationContext) / 3
-        ImageLoad().load(WeakReference(this@CategoriesTagListActivity), categoryInfo.headerImage.toString(), iv_bg, width, height)
+        ImageLoad().load(categoryInfo.headerImage.toString(), iv_bg, width, height)
 
 
         toolbar.title = ""
@@ -131,8 +130,7 @@ class CategoriesTagListActivity : BaseActivity(), CategoriesDetailContract.Categ
         }
     }
 
-    override fun onCategoriesDetailFail(error: Throwable) {
-        Log.d("error", error.localizedMessage)
+    override fun onCategoriesDetailFail(error: Throwable?) {
     }
 
     private inner class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {

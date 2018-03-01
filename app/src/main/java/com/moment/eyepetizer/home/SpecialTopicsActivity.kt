@@ -91,7 +91,7 @@ class SpecialTopicsActivity : BaseActivity(), SpecialTopicsContract.SpecialTopic
         }
     }
 
-    override fun onSpecialTopicsFail(throwable: Throwable) {
+    override fun onSpecialTopicsFail(throwable: Throwable?) {
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.isLoadmoreFinished = false
             swipeRefreshLayout.finishLoadmore()

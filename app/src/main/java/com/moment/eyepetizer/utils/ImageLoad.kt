@@ -21,7 +21,7 @@ import java.lang.ref.WeakReference
 
 class ImageLoad {
 
-    open fun load(context: WeakReference<Context>, url: String, image: ImageView?) {
+    open fun load(url: String, image: ImageView?) {
         if (image == null) return
         var requestOptions = RequestOptions().centerCrop()
                 .placeholder(R.drawable.default_banner)
@@ -32,14 +32,14 @@ class ImageLoad {
                 .dontAnimate()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
-        Glide.with(context.get()!!.applicationContext)
+        Glide.with(image.context)
                 .load(url)
                 .apply(requestOptions)
                 .into(object : DrawableImageViewTarget(image) {
                 })
     }
 
-    open fun load(context: WeakReference<Context>, url: String, image: ImageView?, width: Int, height: Int) {
+    open fun load(url: String, image: ImageView?, width: Int, height: Int) {
         if (image == null) return
         var lp = image.layoutParams
         lp.width = width
@@ -55,38 +55,38 @@ class ImageLoad {
                 .priority(Priority.LOW)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
-        Glide.with(context.get()!!.applicationContext)
+        Glide.with(image.context)
                 .load(url)
                 .apply(requestOptions)
                 .into(object : DrawableImageViewTarget(image) {
                 })
     }
 
-    open fun loadCircle(context: WeakReference<Context>, url: String, image: ImageView?) {
+    open fun loadCircle(url: String, image: ImageView?) {
         if (image == null) return
         var lp = image.layoutParams
-        lp.width = DensityUtil.dip2px(context.get()!!, 40f)
-        lp.height = DensityUtil.dip2px(context.get()!!, 40f)
+        lp.width = DensityUtil.dip2px(image.context.applicationContext, 40f)
+        lp.height = DensityUtil.dip2px(image.context.applicationContext, 40f)
         image.layoutParams = lp
         var requestOptions = RequestOptions().centerCrop()
                 .placeholder(R.drawable.default_icon)
                 .error(R.drawable.default_icon)
                 .format(DecodeFormat.PREFER_RGB_565)
                 .transform(CenterCrop())
-                .override(DensityUtil.dip2px(context.get()!!, 40f))
+                .override(lp.width)
                 .dontAnimate()
                 .priority(Priority.LOW)
                 .transform(CircleCrop())
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
-        Glide.with(context.get()!!.applicationContext)
+        Glide.with(image.context)
                 .load(url)
                 .apply(requestOptions)
                 .into(object : DrawableImageViewTarget(image) {
                 })
     }
 
-    open fun load(context: WeakReference<Context>, url: String, image: ImageView?, width: Int, height: Int, round: Int) {
+    open fun load(url: String, image: ImageView?, width: Int, height: Int, round: Int) {
         if (image == null) return
         var lp = image.layoutParams
         lp.width = width
@@ -99,17 +99,17 @@ class ImageLoad {
                 .override(width, height)
                 .priority(Priority.LOW)
                 .dontAnimate()
-                .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(context.get()!!, round.toFloat())))
+                .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(image.context.applicationContext, round.toFloat())))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
-        Glide.with(context.get()!!.applicationContext)
+        Glide.with(image.context)
                 .load(url)
                 .apply(requestOptions)
                 .into(object : DrawableImageViewTarget(image) {
                 })
     }
 
-    open fun loadRound(context: WeakReference<Context>, url: String, image: ImageView?, round: Int) {
+    open fun loadRound(url: String, image: ImageView?, round: Int) {
         if (image == null) return
         var requestOptions = RequestOptions().centerCrop()
                 .placeholder(R.drawable.default_banner)
@@ -117,10 +117,10 @@ class ImageLoad {
                 .format(DecodeFormat.PREFER_RGB_565)
                 .priority(Priority.LOW)
                 .dontAnimate()
-                .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(context.get()!!, round.toFloat())))
+                .transforms(CenterCrop(), RoundedCorners(DensityUtil.dip2px(image.context.applicationContext, round.toFloat())))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
-        Glide.with(context.get()!!.applicationContext)
+        Glide.with(image.context)
                 .load(url)
                 .apply(requestOptions)
                 .into(object : DrawableImageViewTarget(image) {

@@ -101,7 +101,7 @@ class RecommendFragment : BaseFragment(), RecommendContract.RecommendView {
         }
     }
 
-    override fun onRecommendFail(error: Throwable) {
+    override fun onRecommendFail(error: Throwable?) {
         swipeRefreshLayout.isLoadmoreFinished = false
         swipeRefreshLayout.finishLoadmore()
         swipeRefreshLayout.finishRefresh()

@@ -20,7 +20,7 @@ class SearchPresenter(var searchView: SearchContract.SearchView) : SearchContrac
     override fun search(start: Int, num: Int, search: String): Disposable = GetDataList.search(start, num, search, object : CallBack<Result> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = Unit
+        override fun onError(e: Throwable?) = Unit
 
         override fun onNext(t: Result) = searchView.onSearchSucc(t)
 

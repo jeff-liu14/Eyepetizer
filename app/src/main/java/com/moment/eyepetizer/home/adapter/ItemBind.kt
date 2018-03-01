@@ -12,7 +12,6 @@ import android.view.View
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.moment.eyepetizer.net.entity.Result
 import com.moment.eyepetizer.utils.*
-import java.lang.ref.WeakReference
 
 /**
  * Created by moment on 2018/2/9.
@@ -129,9 +128,9 @@ fun onItemBriefCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, vi
     }
     val iconType = briefCard["iconType"].toString()
     when (iconType) {
-        "square" -> ImageLoad().loadRound(WeakReference(mContext), briefCard["icon"].toString(), holder.image, 5)
-        "round" -> ImageLoad().loadCircle(WeakReference(mContext), briefCard["icon"].toString(), holder.image)
-        else -> ImageLoad().load(WeakReference(mContext), briefCard["icon"].toString(), holder.image)
+        "square" -> ImageLoad().loadRound(briefCard["icon"].toString(), holder.image, 5)
+        "round" -> ImageLoad().loadCircle(briefCard["icon"].toString(), holder.image)
+        else -> ImageLoad().load(briefCard["icon"].toString(), holder.image)
     }
 
 }
@@ -143,7 +142,7 @@ fun onItemDynamicInfoCardBind(mContext: Context, datas: ArrayList<Result.ItemLis
     holder.tv_print!!.text = dynamicInfoCard["text"].toString()
     val user = dynamicInfoCard["user"] as Map<*, *>
 
-    ImageLoad().loadCircle(WeakReference(mContext), user["avatar"].toString(), holder.civ_icon)
+    ImageLoad().loadCircle(user["avatar"].toString(), holder.civ_icon)
     holder.tv_nickname!!.text = user["nickname"].toString()
     val reply = dynamicInfoCard["reply"] as Map<*, *>
     holder.tv_content!!.text = reply["message"].toString()
@@ -158,7 +157,7 @@ fun onItemDynamicInfoCardBind(mContext: Context, datas: ArrayList<Result.ItemLis
 
     val width = getScreenWidth(mContext) * 0.4
     val height = width * 0.6
-    ImageLoad().load(WeakReference(mContext), cover["feed"].toString(), holder.iv_conver, width.toInt(), height.toInt(), 5)
+    ImageLoad().load(cover["feed"].toString(), holder.iv_conver, width.toInt(), height.toInt(), 5)
 
     holder.iv_conver!!.setOnClickListener {
         var title = simpleVideo["title"].toString()
@@ -202,9 +201,9 @@ fun onItemFollowCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, v
     val iconType = header["iconType"].toString()
 
     when (iconType) {
-        "square" -> ImageLoad().loadRound(WeakReference(mContext), header["icon"].toString(), holder.iv_icon, 5)
-        "round" -> ImageLoad().loadCircle(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
-        else -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
+        "square" -> ImageLoad().loadRound(header["icon"].toString(), holder.iv_icon, 5)
+        "round" -> ImageLoad().loadCircle(header["icon"].toString(), holder.iv_icon)
+        else -> ImageLoad().load(header["icon"].toString(), holder.iv_icon)
     }
 
     val list = TextUtils.split(header["description"].toString(), "/")
@@ -215,7 +214,7 @@ fun onItemFollowCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, v
     val cover = datas["cover"] as Map<*, *>
     val width = getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 20f)
     val height = width * 0.6
-    ImageLoad().load(WeakReference(mContext), cover["feed"].toString(), holder.iv_cover, width, height.toInt(), 5)
+    ImageLoad().load(cover["feed"].toString(), holder.iv_cover, width, height.toInt(), 5)
 
     holder.iv_cover!!.setOnClickListener {
         val title = datas["title"].toString()
@@ -232,11 +231,11 @@ fun onItemFollowCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, v
 fun onItemVideoSmallCardBinder(mContext: Context, datas: ArrayList<Result.ItemList>, viewHolder: RecyclerView.ViewHolder, position: Int) {
     val data: Result.ItemList = datas[position]
     val holder: ItemVideoSmallCardHolder = viewHolder as ItemVideoSmallCardHolder
-    val videoSmallCard = data.data as Map<*, *>
+    val videoSmallCard = data.data!! as Map<*, *>
     val cover = videoSmallCard["cover"] as Map<*, *>
     val width = getScreenWidth(mContext) * 0.5
     val height = width * 0.6
-    ImageLoad().load(WeakReference(mContext), cover["feed"].toString(), holder.iv_cover, width.toInt(), height.toInt(), 5)
+    ImageLoad().load(cover["feed"].toString(), holder.iv_cover, width.toInt(), height.toInt(), 5)
 
     holder.iv_cover!!.setOnClickListener {
         val title = videoSmallCard["title"].toString()
@@ -350,9 +349,9 @@ fun onItemVideoCollectionWithBriefBinder(mContext: Context, datas: ArrayList<Res
 
     val iconType = header["iconType"].toString()
     when (iconType) {
-        "square" -> ImageLoad().loadRound(WeakReference(mContext), header["icon"].toString(), holder.iv_icon, 5)
-        "round" -> ImageLoad().loadCircle(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
-        else -> ImageLoad().load(WeakReference(mContext), header["icon"].toString(), holder.iv_icon)
+        "square" -> ImageLoad().loadRound(header["icon"].toString(), holder.iv_icon, 5)
+        "round" -> ImageLoad().loadCircle(header["icon"].toString(), holder.iv_icon)
+        else -> ImageLoad().load(header["icon"].toString(), holder.iv_icon)
     }
     holder.tv_des!!.text = header["description"].toString()
 
@@ -395,7 +394,7 @@ fun onItemBannerBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewH
     val image: String = banner["image"].toString()
     val width = getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 20f)
     val height = width * 0.6
-    ImageLoad().load(WeakReference(mContext), image, holder.iv_banner, width.toDouble().toInt(), height.toInt(), 5)
+    ImageLoad().load(image, holder.iv_banner, width.toDouble().toInt(), height.toInt(), 5)
     holder.iv_banner!!.setOnClickListener {
         val actionUrl = banner["actionUrl"].toString()
         parseUri(mContext, actionUrl)
@@ -409,7 +408,7 @@ fun onItemBanner2Bind(mContext: Context, datas: ArrayList<Result.ItemList>, view
     val image: String = banner["image"].toString()
     val width = getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 20f)
     val height = width * 0.6
-    ImageLoad().load(WeakReference(mContext), image, holder.iv_banner, width.toDouble().toInt(), height.toDouble().toInt(), 5)
+    ImageLoad().load(image, holder.iv_banner, width.toDouble().toInt(), height.toDouble().toInt(), 5)
 
     val label = banner["label"]
     if (label != null) {
@@ -441,18 +440,18 @@ fun onItemVideoBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHo
     val video = data.data as Map<*, *>
     if (video["author"] != null) {
         val author = video["author"] as Map<*, *>
-        ImageLoad().loadCircle(WeakReference(mContext), author["icon"].toString(), holder.iv_icon)
+        ImageLoad().loadCircle(author["icon"].toString(), holder.iv_icon)
         holder.tv_content!!.text = author["name"].toString() + " / #" + video["category"]
     } else if (video["tags"] != null) {
         val tags = video["tags"] as List<Map<*, *>>
-        ImageLoad().loadRound(WeakReference(mContext), tags[0]["headerImage"].toString(), holder.iv_icon, 5)
+        ImageLoad().loadRound(tags[0]["headerImage"].toString(), holder.iv_icon, 5)
         holder.tv_content!!.text = "#" + tags[0]["name"].toString() + "#"
     }
 
     val cover = video["cover"] as Map<*, *>
     val width = getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 20f)
     val height = width * 0.6
-    ImageLoad().load(WeakReference(mContext), cover["feed"].toString(), holder.iv_cover, width, height.toDouble().toInt(), 5)
+    ImageLoad().load(cover["feed"].toString(), holder.iv_cover, width, height.toDouble().toInt(), 5)
 
     holder.iv_cover!!.setOnClickListener {
         val title = video["title"].toString()

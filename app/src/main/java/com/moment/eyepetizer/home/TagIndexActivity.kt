@@ -18,7 +18,6 @@ import com.moment.eyepetizer.utils.getScreenHeight
 import com.moment.eyepetizer.utils.getScreenWidth
 import kotlinx.android.synthetic.main.tagindex_activity.*
 import java.io.File
-import java.lang.ref.WeakReference
 
 /**
  * Created by moment on 2018/2/11.
@@ -97,7 +96,7 @@ class TagIndexActivity : BaseActivity(), TagIndexContract.TagIndexView {
         var tagInfo = tagIndex.tagInfo as TagIndex.TagInfo
         val width = getScreenWidth(applicationContext)
         val height = getScreenHeight(applicationContext) / 3
-        ImageLoad().load(WeakReference(this@TagIndexActivity), tagInfo.headerImage.toString(), iv_bg, width, height)
+        ImageLoad().load(tagInfo.headerImage.toString(), iv_bg, width, height)
 
 
         toolbar.title = ""
@@ -131,7 +130,7 @@ class TagIndexActivity : BaseActivity(), TagIndexContract.TagIndexView {
         viewpager.currentItem = 0
     }
 
-    override fun onTagIndexFail(throwable: Throwable) = Unit
+    override fun onTagIndexFail(throwable: Throwable?) = Unit
 
     private inner class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 

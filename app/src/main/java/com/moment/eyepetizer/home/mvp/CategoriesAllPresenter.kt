@@ -20,7 +20,7 @@ class CategoriesAllPresenter(val categoriesAllView: CategoriesAllContract.Catego
     override fun categoriesAll(): Disposable = GetDataList.categoriesAll(object : CallBack<Result> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = categoriesAllView.onCategoriesAllFail(e)
+        override fun onError(e: Throwable?) = categoriesAllView.onCategoriesAllFail(e)
 
         override fun onNext(t: Result) = categoriesAllView.onCategoriesAllSucc(t)
 

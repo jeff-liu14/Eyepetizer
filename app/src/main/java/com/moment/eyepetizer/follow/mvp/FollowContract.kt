@@ -16,6 +16,6 @@ interface FollowContract {
 
     interface FollowView : BaseView<FollowPresenter> {
         fun onFollowSucc(result: Result)
-        fun onError(error: Throwable)
+        fun onError(error: Throwable?)
     }
 }

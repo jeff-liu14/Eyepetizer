@@ -102,7 +102,7 @@ class DiscussListActivity : BaseActivity(), DiscussListContract.DiscussListView 
         }
     }
 
-    override fun onDiscussListFail(throwable: Throwable) {
+    override fun onDiscussListFail(throwable: Throwable?) {
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.isLoadmoreFinished = false
             swipeRefreshLayout.finishLoadmore()

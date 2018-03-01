@@ -20,7 +20,7 @@ class RankListPresenter(var rankListDetailView: RankListContract.RankListView) :
     override fun rankList(): Disposable = GetDataList.rankList(object : CallBack<RankList> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = rankListDetailView.onRankListFail(e)
+        override fun onError(e: Throwable?) = rankListDetailView.onRankListFail(e)
 
         override fun onNext(t: RankList) = rankListDetailView.onRankListSucc(t)
 

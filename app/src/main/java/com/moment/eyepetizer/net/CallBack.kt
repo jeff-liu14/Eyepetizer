@@ -7,7 +7,7 @@ package com.moment.eyepetizer.net
 interface CallBack<T> {
     fun onCompleted()
 
-    fun onError(e: Throwable)
+    fun onError(e: Throwable?)
 
     fun onNext(t: T)
 }

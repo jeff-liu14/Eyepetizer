@@ -16,6 +16,6 @@ interface CategoriesDetailContract {
 
     interface CategoriesDetailView : BaseView<CategoriesDetailPresenter> {
         fun onCategoriesDetailSucc(result: CategoryInfo)
-        fun onCategoriesDetailFail(error: Throwable)
+        fun onCategoriesDetailFail(error: Throwable?)
     }
 }

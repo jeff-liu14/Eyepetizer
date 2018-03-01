@@ -48,11 +48,11 @@ class VideoCollectionAdapter(context: Context, private val mDatas: List<VideoCol
         val viewHolder = ViewHolder(view)
 
         viewHolder.mImg = view
-                .findViewById(R.id.id_index_gallery_item_image) as ImageView
-        viewHolder.tv_title = view.findViewById(R.id.tv_title) as TextView
+                .findViewById(R.id.id_index_gallery_item_image)
+        viewHolder.tv_title = view.findViewById(R.id.tv_title)
 
-        viewHolder.tv_content = view.findViewById(R.id.tv_content) as TextView
-        viewHolder.tv_time = view.findViewById(R.id.tv_time) as TextView
+        viewHolder.tv_content = view.findViewById(R.id.tv_content)
+        viewHolder.tv_time = view.findViewById(R.id.tv_time)
         return viewHolder
     }
 
@@ -62,7 +62,7 @@ class VideoCollectionAdapter(context: Context, private val mDatas: List<VideoCol
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         var width = getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 25f)
         var height = width * 0.6
-        ImageLoad().load(WeakReference(mContext), mDatas.get(i).icon.toString(), viewHolder.mImg, width.toDouble().toInt(), height.toDouble().toInt(), 5)
+        ImageLoad().load(mDatas.get(i).icon.toString(), viewHolder.mImg, width.toDouble().toInt(), height.toDouble().toInt(), 5)
         viewHolder.tv_title!!.text = mDatas.get(i).title
         viewHolder.tv_content!!.text = "#" + mDatas.get(i).category
         viewHolder.tv_time!!.text = TimeUtils.secToTime(mDatas.get(i).duration!!.toInt())

@@ -22,7 +22,7 @@ class CategoriesDetailPresenter(var categoriesTagListView: CategoriesDetailContr
             GetDataList.categoriesDetail(id, object : CallBack<CategoryInfo> {
                 override fun onCompleted() = Unit
 
-                override fun onError(e: Throwable) = categoriesTagListView.onCategoriesDetailFail(e)
+                override fun onError(e: Throwable?) = categoriesTagListView.onCategoriesDetailFail(e)
 
                 override fun onNext(t: CategoryInfo) = categoriesTagListView.onCategoriesDetailSucc(t)
 

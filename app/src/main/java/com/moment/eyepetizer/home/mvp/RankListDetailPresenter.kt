@@ -21,7 +21,7 @@ class RankListDetailPresenter(var rankListDetailView: RankListDetailContract.Ran
             = GetDataList.rankListVideo(path, map, object : CallBack<Result> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = rankListDetailView.onRankListFail(e)
+        override fun onError(e: Throwable?) = rankListDetailView.onRankListFail(e)
 
         override fun onNext(t: Result) = rankListDetailView.onRankListSucc(t)
 

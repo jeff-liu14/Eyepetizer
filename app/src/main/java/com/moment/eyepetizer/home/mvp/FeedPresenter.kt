@@ -19,7 +19,7 @@ class FeedPresenter(var feedView: FeedContract.FeedView) : FeedContract.FeedPres
     override fun feed(date: Long): Disposable = GetDataList.feed(date, object : CallBack<Result> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = feedView.onFeedFail(e)
+        override fun onError(e: Throwable?) = feedView.onFeedFail(e)
 
         override fun onNext(t: Result) = feedView.onFeedSucc(t)
 

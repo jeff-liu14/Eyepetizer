@@ -14,7 +14,6 @@ import com.moment.eyepetizer.net.entity.Result
 import com.moment.eyepetizer.utils.*
 import kotlinx.android.synthetic.main.rectangle_card_item.view.*
 import kotlinx.android.synthetic.main.square_card_item.view.*
-import java.lang.ref.WeakReference
 
 /**
  * Created by moment on 2018/2/12.
@@ -58,7 +57,7 @@ class CategoriesAllAdapter(datas: ArrayList<Result.ItemList>, var context: Conte
         var dataType = squareCard["dataType"].toString()
         var width = (getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 8f)) / 2
         if ("SquareCard" == dataType) {
-            ImageLoad().load(WeakReference(mContext), squareCard["image"].toString(), holder.iv_square, width, width)
+            ImageLoad().load(squareCard["image"].toString(), holder.iv_square, width, width)
         }
         var actionUrl = squareCard["actionUrl"].toString()
         holder.root!!.setOnClickListener {
@@ -88,7 +87,7 @@ class CategoriesAllAdapter(datas: ArrayList<Result.ItemList>, var context: Conte
         var dataType = rectangleCard["dataType"].toString()
         if ("RectangleCard" == dataType) {
             var width = getScreenWidth(mContext) - DensityUtil.dip2px(mContext, 4f)
-            ImageLoad().load(WeakReference(mContext), rectangleCard["image"].toString(), holder.iv_rectangle, width, width / 2)
+            ImageLoad().load(rectangleCard["image"].toString(), holder.iv_rectangle, width, width / 2)
         }
         var actionUrl = rectangleCard["actionUrl"].toString()
         holder.root!!.setOnClickListener {

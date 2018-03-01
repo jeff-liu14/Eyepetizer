@@ -22,7 +22,7 @@ class CategoryTabListPresenter(var categoryTagListView: CategoryTabListContract.
             GetDataList.categoriesTagList(path, map, object : CallBack<Result> {
                 override fun onCompleted() = Unit
 
-                override fun onError(e: Throwable) = categoryTagListView.onCategoriesTagFail(e)
+                override fun onError(e: Throwable?) = categoryTagListView.onCategoriesTagFail(e)
 
                 override fun onNext(t: Result) = categoryTagListView.onCategoriesTagSucc(t)
             })

@@ -19,7 +19,7 @@ class FollowPresenter(var followView: FollowContract.FollowView) : FollowContrac
             GetDataList.follow(start, num, follow, startId, object : CallBack<Result> {
                 override fun onCompleted() = Unit
 
-                override fun onError(e: Throwable) = followView.onError(e)
+                override fun onError(e: Throwable?) = followView.onError(e)
 
                 override fun onNext(t: Result) = followView.onFollowSucc(t)
 

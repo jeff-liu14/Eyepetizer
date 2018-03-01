@@ -17,6 +17,6 @@ interface DiscussListContract {
 
     interface DiscussListView : BaseView<DiscussListPresenter> {
         fun onDiscussListSucc(result: Result)
-        fun onDiscussListFail(throwable: Throwable)
+        fun onDiscussListFail(throwable: Throwable?)
     }
 }

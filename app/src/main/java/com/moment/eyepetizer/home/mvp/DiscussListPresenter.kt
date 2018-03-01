@@ -21,7 +21,7 @@ class DiscussListPresenter(var discussListView: DiscussListContract.DiscussListV
             GetDataList.getDiscussList(path, map, object : CallBack<Result> {
                 override fun onCompleted() = Unit
 
-                override fun onError(e: Throwable) = discussListView.onDiscussListFail(e)
+                override fun onError(e: Throwable?) = discussListView.onDiscussListFail(e)
 
                 override fun onNext(t: Result) = discussListView.onDiscussListSucc(t)
 

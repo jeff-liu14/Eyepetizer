@@ -73,7 +73,7 @@ class CategoriesAllActivity : BaseActivity(), CategoriesAllContract.CategoriesAl
         swipeRefreshLayout.finishRefresh()
     }
 
-    override fun onCategoriesAllFail(error: Throwable) {
+    override fun onCategoriesAllFail(error: Throwable?) {
         swipeRefreshLayout.isLoadmoreFinished = false
         swipeRefreshLayout.finishRefresh()
     }

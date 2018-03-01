@@ -112,7 +112,7 @@ class CategoryTagListFragment(id: String, path: String) : BaseFragment(), Catego
         }
     }
 
-    override fun onCategoriesTagFail(error: Throwable) {
+    override fun onCategoriesTagFail(error: Throwable?) {
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.isLoadmoreFinished = false
             swipeRefreshLayout.finishLoadmore()

@@ -16,6 +16,6 @@ interface DiscoveryContract {
 
     interface DiscoveryView : BaseView<DiscoveryPresenter> {
         fun onDiscoverySucc(result: Result)
-        fun onDiscoveryFail(error: Throwable)
+        fun onDiscoveryFail(error: Throwable?)
     }
 }

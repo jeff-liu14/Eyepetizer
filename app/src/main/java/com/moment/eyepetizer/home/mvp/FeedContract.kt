@@ -16,6 +16,6 @@ interface FeedContract {
 
     interface FeedView : BaseView<FeedPresenter> {
         fun onFeedSucc(result: Result)
-        fun onFeedFail(error: Throwable)
+        fun onFeedFail(error: Throwable?)
     }
 }

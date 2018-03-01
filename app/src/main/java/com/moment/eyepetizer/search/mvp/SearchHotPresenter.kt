@@ -19,7 +19,7 @@ class SearchHotPresenter(var searchView: SearchContract.SearchHotView) : SearchC
     override fun hot(): Disposable = GetDataList.hot(object : CallBack<List<String>> {
         override fun onCompleted() = Unit
 
-        override fun onError(e: Throwable) = Unit
+        override fun onError(e: Throwable?) = Unit
 
         override fun onNext(t: List<String>) = searchView.onHotSucc(t)
 

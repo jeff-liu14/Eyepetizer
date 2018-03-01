@@ -87,7 +87,7 @@ class DiscoveryFragment : BaseFragment(), DiscoveryContract.DiscoveryView {
         swipeRefreshLayout.isLoadmoreFinished = TextUtils.isEmpty(t.nextPageUrl)
     }
 
-    override fun onDiscoveryFail(error: Throwable) {
+    override fun onDiscoveryFail(error: Throwable?) {
         swipeRefreshLayout.isLoadmoreFinished = false
         swipeRefreshLayout.finishLoadmore()
         swipeRefreshLayout.finishRefresh()
