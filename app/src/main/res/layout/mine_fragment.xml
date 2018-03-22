@@ -79,6 +79,7 @@
                 android:background="@color/gray" />
 
             <LinearLayout
+                android:id="@+id/ll_download"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -92,10 +93,11 @@
                     android:tint="@color/gray" />
 
                 <TextView
+                    android:id="@+id/tv_download"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="缓存"
+                    android:text="内存路径"
                     android:textColor="@color/gray"
                     android:textSize="14sp" />
             </LinearLayout>

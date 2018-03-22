@@ -9,7 +9,7 @@ import android.text.TextUtils
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
-import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
+import com.github.rubensousa.gravitysnaphelper.GravityPagerSnapHelper
 import com.moment.eyepetizer.net.entity.Result
 import com.moment.eyepetizer.utils.*
 
@@ -179,7 +179,7 @@ fun onItemHorizontalScrollCardBind(mContext: Context, datas: ArrayList<Result.It
 
     val linearLayout: RecyclerView.LayoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
     holder.recyclerview!!.layoutManager = linearLayout
-    val snapHelper: SnapHelper = GravitySnapHelper(Gravity.START)
+    val snapHelper: SnapHelper = GravityPagerSnapHelper(Gravity.START)
     snapHelper.attachToRecyclerView(holder.recyclerview)
 
 
@@ -330,7 +330,7 @@ fun onItemSquareCardCollectionBinder(mContext: Context, datas: ArrayList<Result.
 
     val linearLayout: RecyclerView.LayoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
     holder.recyclerview!!.layoutManager = linearLayout
-    val snapHelper: SnapHelper = GravitySnapHelper(Gravity.START)
+    val snapHelper: SnapHelper = GravityPagerSnapHelper(Gravity.START)
     snapHelper.attachToRecyclerView(holder.recyclerview)
 
 
@@ -370,7 +370,7 @@ fun onItemVideoCollectionWithBriefBinder(mContext: Context, datas: ArrayList<Res
 
     val linearLayout: RecyclerView.LayoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
     holder.recyclerview!!.layoutManager = linearLayout
-    val snapHelper: SnapHelper = GravitySnapHelper(Gravity.START)
+    val snapHelper: SnapHelper = GravityPagerSnapHelper(Gravity.START)
     snapHelper.attachToRecyclerView(holder.recyclerview)
 
     ItemClickSupport.addTo(holder.recyclerview).setOnItemClickListener { _, position, _ ->
@@ -501,7 +501,7 @@ fun onItemVideoCollectionOfBind(mContext: Context, datas: ArrayList<Result.ItemL
 
     val linearLayout: RecyclerView.LayoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
     holder.recyclerview_videocollection_of!!.layoutManager = linearLayout
-    val snapHelper: SnapHelper = GravitySnapHelper(Gravity.START)
+    val snapHelper: SnapHelper = GravityPagerSnapHelper(Gravity.START)
     snapHelper.attachToRecyclerView(holder.recyclerview_videocollection_of)
     ItemClickSupport.addTo(holder.recyclerview_videocollection_of).setOnItemClickListener { _, position, _ ->
         val data = itemList[position]["data"] as Map<*, *>

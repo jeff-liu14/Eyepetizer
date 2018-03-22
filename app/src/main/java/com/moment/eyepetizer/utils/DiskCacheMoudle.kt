@@ -14,8 +14,7 @@ import com.bumptech.glide.module.AppGlideModule
  * Created by moment on 2018/2/7.
  */
 @GlideModule
-class DiskCacheMoudle : AppGlideModule() {
-
+class DiskCacheModule : AppGlideModule() {
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         var calculator = MemorySizeCalculator.Builder(context.applicationContext)
                 .setMemoryCacheScreens(2f)
@@ -27,6 +26,5 @@ class DiskCacheMoudle : AppGlideModule() {
         builder.setDiskCache(InternalCacheDiskCacheFactory(context.applicationContext, "glideImageCache", diskCacheSizeBytes.toLong()))
                 .setMemoryCache(LruResourceCache(calculator.memoryCacheSize.toLong()))
                 .setBitmapPool(LruBitmapPool(calculatorBitmap.bitmapPoolSize.toLong()))
-
     }
 }

@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.home_fragment.*
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
+import com.moment.eyepetizer.TabSwitchActivity
 import com.moment.eyepetizer.event.RxBus
 import com.moment.eyepetizer.event.entity.ChangeTabEvent
 import com.moment.eyepetizer.event.entity.CurrentTagEvent
@@ -43,7 +44,10 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
         iv_home.setColorFilter(resources.getColor(R.color.black))
         tv_bar_title.visibility = View.GONE
         tab_layout.visibility = View.VISIBLE
-        iv_home.setOnClickListener { Toast.makeText(activity, "home", Toast.LENGTH_SHORT).show() }
+        iv_home.setOnClickListener {
+            var intent = Intent(activity, TabSwitchActivity::class.java)
+            startActivity(intent)
+        }
         iv_search.setOnClickListener {
             var intent = Intent(activity, SearchActivity::class.java)
             startActivity(intent)
@@ -141,7 +145,7 @@ class HomeFragment : BaseFragment(), ViewPager.OnPageChangeListener, CategoriesC
 
     override fun onPageSelected(position: Int) {
         if (mAdapter != null && mTitles != null && mTitles!!.size - 1 >= position) {
-            val entity = mTitles!!.get(position)
+            val entity = mTitles[position]
             currentIndex = entity.category_id.toString()
             RxBus.default!!.post(CurrentTagEvent(currentIndex, false))
         }

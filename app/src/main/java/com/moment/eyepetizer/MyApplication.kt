@@ -1,11 +1,14 @@
 package com.moment.eyepetizer
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import android.widget.Toast
+import com.example.sdkmanager.SdCardManager
+import io.reactivex.functions.Consumer
 
 
 /**
@@ -38,7 +41,11 @@ class MyApplication : Application() {
         return wm.defaultDisplay.height
     }
 
-    override fun onCreate() = super.onCreate()
+    override fun onCreate() {
+        super.onCreate()
+        SdCardManager.getInstance()
+                .init(this, packageName)
+    }
 
     /**
      * 支持非ui线程Toast，可避免多个Toast队列等待

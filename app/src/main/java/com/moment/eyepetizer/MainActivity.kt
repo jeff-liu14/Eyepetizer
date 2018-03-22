@@ -1,17 +1,21 @@
 package com.moment.eyepetizer
 
+import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import com.example.sdkmanager.SdCardManager
 import com.moment.eyepetizer.follow.FollowFragment
 import com.moment.eyepetizer.home.HomeFragment
 import com.moment.eyepetizer.mine.MineFragment
 import com.moment.eyepetizer.notification.NotificationFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import com.moment.eyepetizer.utils.ImageLoad
+import com.tbruyelle.rxpermissions2.RxPermissions
+import io.reactivex.functions.Consumer
 import java.lang.ref.WeakReference
 
 
@@ -86,6 +90,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     fun initView() = setRadioButton()
 
+    @SuppressLint("RestrictedApi")
     private fun initFragment(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
             //异常情况
@@ -148,5 +153,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         return super.onKeyUp(keyCode, event)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 初始化当前下载路径
+        RxPermissions(this)
+                .request(android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe({ aBoolean ->
+                    if (aBoolean) {
+                        if (SdCardManager.getInstance().isDiskAvailable) {
+                            if (SdCardManager.getInstance().isNullPath) {
+                                SdCardManager.getInstance().changePath(SdCardManager.DownloadPath.SDCARD)
+                            }
+                        } else {
+                            SdCardManager.getInstance().changePath(SdCardManager.DownloadPath.CACHE)
+                        }
+                    } else {
+                        SdCardManager.getInstance().changePath(SdCardManager.DownloadPath.CACHE)
+                    }
+                    Toast.makeText(this, SdCardManager.getInstance().pathDir, Toast.LENGTH_SHORT).show()
+                }, { })
+
     }
 }

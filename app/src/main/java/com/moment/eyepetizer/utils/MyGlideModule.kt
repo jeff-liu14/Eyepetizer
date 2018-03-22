@@ -15,9 +15,7 @@ import java.io.InputStream
 
 @GlideModule
 class MyGlideModule : LibraryGlideModule() {
-
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader.Factory())
     }
-
 }

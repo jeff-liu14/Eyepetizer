@@ -26,8 +26,6 @@ import kotlinx.android.synthetic.main.follow_fragment.*
  * Created by moment on 2018/2/2.
  */
 class FollowFragment : BaseFragment(), FollowContract.FollowView {
-
-
     private var presenter: FollowContract.FollowPresenter? = null
     var adapter: MyMultiTypeAdapter? = null
     var isRefresh: Boolean = false
