@@ -28,7 +28,7 @@ class MineFragment : BaseFragment() {
                 .subscribe({ aBoolean ->
                     if (aBoolean!!) {
                         val dialog = PathDialog(activity)
-                        dialog.setOnPathChangeLisenter {
+                        dialog.setOnPathChangeListener {
                             getDownloadPath()
                             dialog.dismiss()
                         }

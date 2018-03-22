@@ -1,7 +1,6 @@
 package com.example.sdkmanager;
 
 import android.app.Application;
-import android.content.Context;
 import android.text.TextUtils;
 
 import java.io.File;

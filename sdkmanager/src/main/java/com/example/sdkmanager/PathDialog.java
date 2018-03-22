@@ -22,10 +22,10 @@ public class PathDialog extends AlertDialog {
     private RelativeLayout rl_sdcard, rl_phone, root;
     private TextView tv_phone_size, tv_sdcard_size;
     private RadioButton rb_phone, rb_sdcard;
-    private onPathChangeListener changeListener;
+    private OnPathChangeListener changeListener;
 
-    public void setOnPathChangeLisenter(onPathChangeListener changeLisenter) {
-        this.changeListener = changeLisenter;
+    public void setOnPathChangeListener(OnPathChangeListener changeListener) {
+        this.changeListener = changeListener;
     }
 
 
@@ -74,6 +74,7 @@ public class PathDialog extends AlertDialog {
      */
     private void initData() {
 
+        // 判断SD卡是否可用
         if (SdCardManager.getInstance().isDiskAvailable()) {
             rl_sdcard.setVisibility(View.VISIBLE);
             String sdcard = SdCardManager.getInstance().getSdcardName();
@@ -84,7 +85,10 @@ public class PathDialog extends AlertDialog {
         } else {
             rl_sdcard.setVisibility(View.GONE);
         }
+
+        // 获取手机存储路径
         String phone = SdCardManager.getInstance().getCacheName();
+        // 计算路径大小
         String size = "剩余"
                 + StorageVolumeUtil.getSizeStr(StorageVolumeUtil.getAvailableSize(phone)) + "可用，共"
                 + StorageVolumeUtil.getSizeStr(StorageVolumeUtil.getTotalSize(phone));
@@ -168,7 +172,12 @@ public class PathDialog extends AlertDialog {
         });
     }
 
-    public interface onPathChangeListener {
+    public interface OnPathChangeListener {
+        /**
+         * 切换存储路径
+         *
+         * @param downloadPath
+         */
         void onPathChange(SdCardManager.DownloadPath downloadPath);
     }
 }
