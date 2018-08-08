@@ -10,6 +10,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import com.github.rubensousa.gravitysnaphelper.GravityPagerSnapHelper
+import com.moment.eyepetizer.R
 import com.moment.eyepetizer.net.entity.Result
 import com.moment.eyepetizer.utils.*
 
@@ -33,7 +34,13 @@ fun bindViewHolder(mContext: Context, datas: ArrayList<Result.ItemList>, viewHol
         is ItemVideoCollectionOfHolder -> onItemVideoCollectionOfBind(mContext, datas, viewHolder, position)
         is ItemTextHeaderItemHolder -> onItemTextHeaderBind(mContext, datas, viewHolder, position)
         is ItemTextFooterItemHolder -> onItemTextFooterBind(mContext, datas, viewHolder, position)
+        is ItemEmptyHolder -> onItemEmptyHolder(mContext, datas, viewHolder, position)
     }
+}
+
+fun onItemEmptyHolder(mContext: Context, datas: ArrayList<Result.ItemList>, viewHolder: RecyclerView.ViewHolder, position: Int) {
+    val holder: ItemEmptyHolder = viewHolder as ItemEmptyHolder
+    holder.tv_empty?.text = mContext.getString(R.string.empty_view)
 }
 
 fun onItemTextCardBind(mContext: Context, datas: ArrayList<Result.ItemList>, viewHolder: RecyclerView.ViewHolder, position: Int) {

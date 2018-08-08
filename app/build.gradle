@@ -10,8 +10,8 @@ android {
         applicationId "com.moment.eyepetizer"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -93,6 +93,7 @@ dependencies {
     compile 'org.litepal.android:core:1.6.1'
     implementation project(':sdkmanager')
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    implementation 'com.android.support:cardview-v7:23.0.1'
 }
 
 configurations.all {

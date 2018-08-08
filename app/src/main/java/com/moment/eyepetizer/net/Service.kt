@@ -29,7 +29,8 @@ interface Service {
     @GET("api/v5/index/tab/category/{id}")
     fun category(@Path("id") id: Int,
                  @Query("start") start: Int,
-                 @Query("num") num: Int): Observable<Result>
+                 @Query("num") num: Int,
+                 @QueryMap map: HashMap<String, String>): Observable<Result>
 
     //首页-Category
     @GET("/api/v4/categories")

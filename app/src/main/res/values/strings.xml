@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Eyepetizer</string>
+    <string name="empty_view">暂不支持的类型</string>
 </resources>

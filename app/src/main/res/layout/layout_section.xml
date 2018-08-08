@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="7dp"
+    app:elevation="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#26A69A"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.12"
+            android:background="@drawable/theme_color"
+            android:paddingBottom="7dp"
+            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:paddingTop="7dp"
+            android:textColor="@color/default_text_color"
+            android:textSize="20sp" />
+
+        <ToggleButton
+            android:id="@+id/toggle_button_section"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.88"
+            android:background="@drawable/selector_section_toggle"
+            android:contentDescription="Change state of section"
+            android:padding="7dp"
+            android:textOff=""
+            android:textOn="" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

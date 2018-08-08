@@ -1,11 +1,8 @@
 package com.moment.eyepetizer.net
 
 import com.moment.eyepetizer.net.entity.*
-
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Action
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -37,8 +34,20 @@ object GetDataList {
                     { throwable: Throwable -> callBack.onError(throwable) },
                     { callBack.onCompleted() })
 
+    fun parmaMap(): HashMap<String, String> {
+        var map = HashMap<String, String>()
+        map.put("udid", "1dad62050ee54c10965021ed1bff209cdee1f09e")
+        map.put("vc", "256")
+        map.put("vn", "3.14")
+        map.put("deviceModel", "MIX%202")
+        map.put("first_channel", "eyepetizer_yingyongbao_market")
+        map.put("last_channel", "eyepetizer_yingyongbao_market")
+        map.put("system_version_code", "25")
+        return map
+    }
+
     fun category(id: Int, start: Int, num: Int, callBack: CallBack<Result>): Disposable = RetrofitUtils().with().build()
-            .category(id, start, num)
+            .category(id, start, num, parmaMap())
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ result -> callBack.onNext(result) },

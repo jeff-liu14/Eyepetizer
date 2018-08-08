@@ -1,9 +1,10 @@
 package com.moment.eyepetizer
 
 import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
@@ -12,12 +13,10 @@ import com.moment.eyepetizer.follow.FollowFragment
 import com.moment.eyepetizer.home.HomeFragment
 import com.moment.eyepetizer.mine.MineFragment
 import com.moment.eyepetizer.notification.NotificationFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import com.moment.eyepetizer.utils.ImageLoad
 import com.tbruyelle.rxpermissions2.RxPermissions
-import io.reactivex.functions.Consumer
+import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.ref.WeakReference
-
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -109,6 +108,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     mineFragment = item
                 }
             }
+
+            for ((index, fragment) in mFragments.withIndex()) {
+
+            }
         } else {
             homeFragment = HomeFragment()
             followFragment = FollowFragment()
@@ -126,6 +129,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 .hide(mineFragment)
                 .hide(followFragment)
                 .commit()
+        Log.e("sssss", System.currentTimeMillis().toString())
     }
 
 
@@ -172,7 +176,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         SdCardManager.getInstance().changePath(SdCardManager.DownloadPath.CACHE)
                     }
-                    Toast.makeText(this, SdCardManager.getInstance().pathDir, Toast.LENGTH_SHORT).show()
                 }, { })
 
     }

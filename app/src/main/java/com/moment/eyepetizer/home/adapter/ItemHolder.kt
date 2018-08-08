@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.banner2_item.view.*
 import kotlinx.android.synthetic.main.banner_item.view.*
 import kotlinx.android.synthetic.main.brief_card_item.view.*
 import kotlinx.android.synthetic.main.dynamic_infocard_item.view.*
+import kotlinx.android.synthetic.main.empty_item.view.*
 import kotlinx.android.synthetic.main.followcard_item.view.*
 import kotlinx.android.synthetic.main.horizontal_scrollcard_item.view.*
 import kotlinx.android.synthetic.main.squarecard_collection_item.view.*
@@ -86,8 +87,8 @@ fun createMyViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHo
             return ItemTextFooterItemHolder(view)
         }
         else -> {
-            var view = LayoutInflater.from(viewGroup.context).inflate(R.layout.text_card_item, viewGroup, false)
-            view.visibility = View.GONE
+            var view = LayoutInflater.from(viewGroup.context).inflate(R.layout.empty_item, viewGroup, false)
+            view.visibility = View.VISIBLE
             return ItemEmptyHolder(view)
         }
     }
@@ -190,9 +191,5 @@ class ItemVideoCollectionOfHolder(itemView: View) : RecyclerView.ViewHolder(item
 }
 
 class ItemEmptyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-
-    init {
-
-    }
+    var tv_empty: TextView? = itemView.tv_empty
 }

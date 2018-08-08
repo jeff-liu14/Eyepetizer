@@ -121,8 +121,8 @@ class CategoriesAllAdapter(datas: ArrayList<Result.ItemList>, var context: Conte
                     ItemRectangleCardItemHolder(view)
                 }
                 else -> {
-                    var view = LayoutInflater.from(parent!!.context).inflate(R.layout.square_card_item, parent, false)
-                    view.visibility = View.GONE
+                    var view = LayoutInflater.from(parent!!.context).inflate(R.layout.empty_item, parent, false)
+                    view.visibility = View.VISIBLE
                     ItemEmptyHolder(view)
                 }
             }
