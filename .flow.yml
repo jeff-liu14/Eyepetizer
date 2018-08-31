@@ -1,0 +1,47 @@
+#
+# Pre-requirements:
+#
+#   - Setup default agent directory, the default is ${HOME} folder if the variable not defined
+#     - FLOW_AGENT_WORKSPACE:
+#
+#   - Setup project name
+#     - ANDROID_PROJECT_NAME: your project name
+#
+#   - Setup Android build parameter:
+#     - ANDROID_GRADLE_BUILD_TASK
+#
+# Import to your project:
+#   - Rename android.flow.yml to .flow.yml and save to project root directory
+
+flow:
+  - envs:
+     FLOW_AGENT_WORKSPACE: "${HOME}/agent-workspace"
+     FLOW_ENV_OUTPUT_PREFIX: "ANDORID_OUTPUT_"
+     ANDROID_GRADLE_BUILD_TASK: "build"
+     ANDROID_PROJECT_NAME: "Eyepetizer"
+
+    steps:
+      - name: Git Clone
+        script: |
+          rm -r -f ${ANDROID_PROJECT_NAME}
+          export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+          git clone --branch ${FLOW_GIT_BRANCH} --single-branch ${FLOW_GIT_URL} ${ANDROID_PROJECT_NAME}
+
+      - name: Build
+        script: |
+          cd ${ANDROID_PROJECT_NAME}
+          ./release_kaiyan.sh -r
+
+      - name: Find APK
+        script: |
+          cd ${ANDROID_PROJECT_NAME}
+          array=$(find ./ -name *.apk 2>&1)
+          for file in ${array[@]}
+          do
+            echo $file
+            export ANDROID_OUTPUT_IPA_PATH=$file
+          done
+
+      - name: Print APK Path
+        script: |
+          echo ${ANDROID_OUTPUT_IPA_PATH}
